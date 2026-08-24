@@ -53,6 +53,19 @@
     </section>
 @endforeach
 
+<section class="media-panel">
+    <div class="media-panel__img">
+        <img src="{{ image_url('media/placeholders/welcome-side.jpg') }}" alt="Doctor talking with a patient" loading="lazy">
+    </div>
+    <div class="media-panel__body">
+        <h2>Our Doctors</h2>
+        <div class="prose">Our doctors are experienced in every aspect of family health and can help you
+            at any stage of life. Some also have extra qualifications and areas of special interest,
+            including women's health, men's health, mental health and chronic disease management.</div>
+        <a href="{{ route('doctors') }}" class="btn btn--outline">Read Doctor Bios <x-icon name="arrow-right" class="w-4 h-4"/></a>
+    </div>
+</section>
+
 <section class="section section--tint doctors-home" id="our-doctors">
     <div class="container">
         <div class="section-head section-head--center">

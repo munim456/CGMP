@@ -542,3 +542,22 @@ html.js [data-reveal].is-visible { opacity: 1; transform: none; }
     .media-panel__img img { aspect-ratio: 16 / 9; }
     .media-panel--rev .media-panel__img { order: 0; }
 }
+
+/* ======== Homepage polish ======== */
+@keyframes kenburns {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
+}
+.hero-photo__bg img { animation: kenburns 22s ease-in-out infinite alternate; transform-origin: 60% 40%; }
+@media (prefers-reduced-motion: reduce) {
+    .hero-photo__bg img { animation: none; }
+}
+
+.media-panel__body h2 { color: var(--ink); font-size: clamp(1.45rem, 2.6vw, 1.95rem); margin-bottom: .35rem; }
+.media-panel__body .prose { font-size: 1.02rem; max-width: 52ch; }
+
+.doctor-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+
+.testimonials { background: #fff; }
+.testimonial-slider { max-width: 720px; margin-inline: auto; text-align: center; }
+.testimonial-slide blockquote { font-size: 1.12rem; line-height: 1.8; color: var(--text); }
