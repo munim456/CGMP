@@ -2,126 +2,65 @@
 
 @section('content')
 
-<section class="hero" data-reveal-group>
-    <div class="hero__bg" aria-hidden="true">
-        @if($hero['image'] ?? null)
-            <img src="{{ image_url($hero['image']) }}" alt="" loading="eager">
-        @endif
-        <div class="hero__overlay"></div>
+<section class="hero-photo">
+    <div class="hero-photo__bg" aria-hidden="true">
+        <img src="{{ image_url($hero['image'] ?? null, 'media/placeholders/hero-bg.jpg') }}" alt="" loading="eager">
     </div>
-    <div class="container hero__inner">
-        <div class="hero__content">
-            @if(!empty($hero['badge_text']))
-                <span class="chip chip--light hero__badge" data-reveal><x-icon name="check-circle" class="w-4 h-4"/> {{ $hero['badge_text'] }}</span>
-            @endif
-            <h1 data-reveal>{{ $hero['heading'] ?? 'Welcome to Cringila General Medical Practice' }}</h1>
-            <p class="hero__sub" data-reveal>{{ $hero['subheading'] ?? '' }}</p>
-            <div class="hero__actions" data-reveal>
-                @if(!empty($hero['primary_button_text']))
-                    <a href="{{ str_starts_with($hero['primary_button_link'] ?? '', 'http') ? $hero['primary_button_link'] : route('booking') }}"
-                       @if(str_starts_with($hero['primary_button_link'] ?? '', 'http')) target="_blank" rel="noopener" @endif
-                       class="btn btn--accent btn--lg">
-                        <x-icon name="calendar-check" class="w-5 h-5"/> {{ $hero['primary_button_text'] }}
-                    </a>
-                @endif
-                @if(!empty($hero['secondary_button_text']))
-                    <a href="{{ str_contains(($hero['secondary_button_link'] ?? ''), '/') ? ($hero['secondary_button_link'] ?: '#services') : '#services' }}" class="btn btn--ghost btn--lg">
-                        {{ $hero['secondary_button_text'] }} <x-icon name="arrow-right" class="w-5 h-5"/>
-                    </a>
-                @endif
-            </div>
-            <ul class="hero__trust" data-reveal>
-                <li><x-icon name="clock" class="w-4 h-4"/> Open five days a week</li>
-                <li><x-icon name="calendar-check" class="w-4 h-4"/> Same-day appointments</li>
-                <li><x-icon name="users" class="w-4 h-4"/> Walk-ins welcome</li>
-            </ul>
-        </div>
-    </div>
-</section>
+    <div class="container hero-photo__wrap">
+        <div class="hero-card">
+            <h1>Welcome to {{ setting('clinic_name') }}</h1>
 
-<section class="section section--tint home-blog" id="latest-news" aria-labelledby="home-blog-title">
-    <div class="container">
-        <div class="section-head" data-reveal>
-            <div>
-                <p class="eyebrow">Health news & clinic updates</p>
-                <h2 id="home-blog-title">From our blog</h2>
-            </div>
-            <a href="{{ route('blog.index') }}" class="btn btn--outline">View all posts <x-icon name="arrow-right" class="w-4 h-4"/></a>
-        </div>
+            <p class="hero-card__label">Contact us</p>
+            <p>{{ setting('address_line1') }}<br>{{ setting('address_suburb') }}</p>
+            <p><a href="tel:{{ preg_replace('/\s+/', '', setting('phone', '')) }}">{{ setting('phone') }}</a></p>
 
-        @if($latestPosts->isNotEmpty())
-            <div class="grid grid--4 post-grid">
-                @foreach($latestPosts as $post)
-                    @include('partials.post-card', ['post' => $post])
-                @endforeach
-            </div>
-        @else
-            <p class="muted" data-reveal>Articles are coming soon — check back shortly.</p>
-        @endif
-    </div>
-</section>
-
-@if(count($highlights))
-<section class="section highlights" id="highlights" aria-label="Why choose us">
-    <div class="container">
-        <div class="grid grid--4 highlight-grid">
-            @foreach($highlights as $item)
-                <div class="highlight-card" data-reveal>
-                    <span class="highlight-card__icon"><x-icon name="{{ $item['icon'] ?? 'activity' }}"/></span>
-                    <h3>{{ $item['title'] }}</h3>
-                    <p>{{ $item['text'] ?? '' }}</p>
-                </div>
+            <p class="hero-card__label">Opening hours</p>
+            @foreach(preg_split('/\r\n|\r|\n/', trim(setting('opening_hours'))) as $line)
+                @if(trim($line) !== '')<p class="hero-card__hours">{{ trim($line) }}</p>@endif
             @endforeach
+
+            <a href="{{ route('booking') }}" class="btn btn--primary btn--lg hero-card__book">
+                <x-icon name="calendar-check" class="w-5 h-5"/> Book online</a>
         </div>
     </div>
 </section>
-@endif
 
-<section class="section about-home" id="about-preview">
-    <div class="container split split--text-first">
-        <div class="split__text" data-reveal>
-            <p class="eyebrow">About the practice</p>
-            <h2>{{ $about['heading'] ?? '' }}</h2>
-            <div class="prose">{!! ($about['body'] ?? '') !!}</div>
-            @if(!empty($about['points']))
-                <ul class="tick-list">
-                    @foreach($about['points'] as $point)
-                        <li><x-icon name="check-circle" class="w-5 h-5"/> {{ $point }}</li>
-                    @endforeach
-                </ul>
-            @endif
-            <a href="{{ route('about') }}" class="btn btn--primary">Learn more about us <x-icon name="arrow-right" class="w-4 h-4"/></a>
+<section class="section intro-block">
+    <div class="container">
+        <div class="prose prose--intro">
+            {!! $about['body'] !!}
         </div>
-        <div class="split__media" data-reveal>
-            @if(!empty($about['image']))
-                <img src="{{ image_url($about['image']) }}" alt="Inside {{ setting('clinic_name') }}" loading="lazy" class="rounded-img">
-            @else
-                <div class="img-placeholder img-placeholder--tall"><x-icon name="image" class="w-12 h-12"/></div>
-            @endif
-        </div>
+        <p class="intro-note">If you are experiencing any acute respiratory symptoms, please wear a mask
+            and let our reception team know when you arrive.</p>
     </div>
-
-    @if(!empty($about['stats']))
-        <div class="container stats-row" data-reveal>
-            @foreach($about['stats'] as $stat)
-                <div class="stat">
-                    <span class="stat__number"><span class="count-up" data-count-to="{{ $stat['value'] }}">0</span>{{ $stat['suffix'] ?? '' }}</span>
-                    <span class="stat__label">{{ $stat['label'] }}</span>
-                </div>
-            @endforeach
-        </div>
-    @endif
 </section>
+
+@foreach($panels as $panel)
+    <section class="media-panel @if($loop->odd) media-panel--rev @endif">
+        <div class="media-panel__img">
+            <img src="{{ image_url($panel->image) }}" alt="@if($panel->title){{ $panel->title }}@endif" loading="lazy">
+        </div>
+        <div class="media-panel__body">
+            <h2>{{ $panel->title ?? setting('clinic_name') }}</h2>
+            <div class="prose">{!! nl2br(e($panel->message)) !!}</div>
+            @if($panel->button_text && $panel->button_url)
+                @php($url = $panel->button_url)
+                <a href="{{ $url }}"
+                   @if(str_starts_with($url, 'http')) target="_blank" rel="noopener" @endif
+                   class="btn btn--outline">{{ $panel->button_text }}</a>
+            @endif
+        </div>
+    </section>
+@endforeach
 
 <section class="section section--tint doctors-home" id="our-doctors">
     <div class="container">
-        <div class="section-head section-head--center" data-reveal>
-            <p class="eyebrow">Our team</p>
+        <div class="section-head section-head--center">
             <h2>Meet our doctors</h2>
         </div>
         <div class="grid grid--{{ min(3, max(2, $doctors->count())) }} doctor-grid">
             @foreach($doctors as $doctor)
-                <article class="doctor-card" data-reveal>
+                <article class="doctor-card">
                     <div class="doctor-card__photo">
                         @if($doctor->photo)
                             <img src="{{ image_url($doctor->photo) }}" alt="Photo of {{ $doctor->name }}" loading="lazy">
@@ -135,7 +74,7 @@
                 </article>
             @endforeach
         </div>
-        <div class="center" data-reveal>
+        <div class="center">
             <a href="{{ route('doctors') }}" class="btn btn--outline">Read doctor bios <x-icon name="arrow-right" class="w-4 h-4"/></a>
         </div>
     </div>
@@ -144,23 +83,18 @@
 @if($testimonials->isNotEmpty())
 <section class="section testimonials" aria-label="Patient feedback">
     <div class="container narrow">
-        <div class="section-head section-head--center" data-reveal>
-            <p class="eyebrow">Patient feedback</p>
+        <div class="section-head section-head--center">
             <h2>What our patients say</h2>
         </div>
-        <div class="testimonial-slider" id="testimonial-slider" data-reveal>
+        <div class="testimonial-slider" id="testimonial-slider">
             <button type="button" class="slider-btn slider-btn--prev" aria-label="Previous testimonial"><x-icon name="chevron-left" class="w-6 h-6"/></button>
             <div class="testimonial-track" id="testimonial-track">
                 @foreach($testimonials as $testimonial)
                     <figure class="testimonial-slide">
-                        <x-icon name="quote" class="w-8 h-8 testimonial-quote"/>
                         <blockquote>{{ $testimonial->content }}</blockquote>
                         <figcaption>
                             <strong>{{ $testimonial->name }}</strong>
                             @if($testimonial->context)<span>{{ $testimonial->context }}</span>@endif
-                            <span class="stars" aria-label="{{ $testimonial->rating }} out of 5 stars">
-                                @for($i = 0; $i < $testimonial->rating; $i++)<x-icon name="star" class="w-4 h-4 star-filled"/>@endfor
-                            </span>
                         </figcaption>
                     </figure>
                 @endforeach
@@ -173,7 +107,7 @@
 @endif
 
 <section class="booking-strip" id="book">
-    <div class="container booking-strip__inner" data-reveal>
+    <div class="container booking-strip__inner">
         <div>
             <h2>{{ $bookingStrip['heading'] ?? 'Ready to see a doctor?' }}</h2>
             <p>{{ $bookingStrip['text'] ?? '' }}</p>
