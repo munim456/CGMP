@@ -1,23 +1,22 @@
 @extends('layouts.public')
 
 @section('content')
-<section class="section">
-    <div class="container inner-layout">
+<section class="page-hero">
+    <div class="container" data-reveal>
+        <h1>Contact us</h1>
+        <p class="page-hero__sub">Thank you for visiting the website of {{ setting('clinic_name') }}.
+            Please feel free to contact us with any enquiries you may have about our practice.
+            We would love to hear from you.</p>
+    </div>
+</section>
 
-        <aside class="inner-side">
-            <nav class="side-menu" aria-label="Section menu">
-                <span class="side-menu__link is-header is-active" aria-current="page">Contact Us</span>
-            </nav>
-        </aside>
+<section class="section">
+    <div class="container">
 
         <div class="inner-main">
 
             <div class="textboxsideimage">
                 <div data-reveal>
-                    <h1><strong>Contact us</strong></h1>
-                    <p>Thank you for visiting the website of {{ setting('clinic_name') }}.
-                        Please feel free to contact us with any enquiries you may have about our practice —
-                        we would love to hear from you.</p>
                     <ul class="text-list">
                         <li>For all general enquiries, please call
                             <a href="tel:{{ preg_replace('/\s+/', '', setting('phone', '')) }}" class="text-link">{{ setting('phone') }}</a>

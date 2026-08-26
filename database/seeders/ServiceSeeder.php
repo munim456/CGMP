@@ -21,7 +21,7 @@ class ServiceSeeder extends Seeder
                 'title' => 'Men’s Health',
                 'icon' => 'user-round',
                 'short_description' => 'Health checks, preventive screening and management of conditions affecting men at every age.',
-                'description' => '<p>From heart health checks and blood pressure monitoring to prostate health, diabetes screening and lifestyle advice, our GPs offer judgement-free care tailored to men’s health needs. Regular check-ups help catch problems early — book a men’s health assessment today.</p>',
+                'description' => '<p>From heart health checks and blood pressure monitoring to prostate health, diabetes screening and lifestyle advice, our GPs offer judgement-free care tailored to men’s health needs. Regular check-ups help catch problems early. Book a men’s health assessment today.</p>',
                 'sort_order' => 2,
             ],
             [

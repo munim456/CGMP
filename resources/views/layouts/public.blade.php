@@ -27,7 +27,7 @@
 
 <header class="site-header" id="site-header">
     <div class="container site-header__inner">
-        <a href="{{ route('home') }}" class="brand" aria-label="{{ setting('clinic_name') }} — home">
+        <a href="{{ route('home') }}" class="brand" aria-label="{{ setting('clinic_name') }} home">
             @if(setting('logo_path'))
                 <img src="{{ image_url(setting('logo_path')) }}" alt="{{ setting('clinic_name') }} logo" class="brand__logo">
             @else
@@ -43,6 +43,7 @@
             <ul>
                 <li><a href="{{ route('booking') }}" class="nav-book-pill"><x-icon name="calendar-check" class="w-5 h-5"/> Book Online</a></li>
                 <li><a href="{{ route('doctors') }}">Our Doctors</a></li>
+                <li><a href="{{ route('fees') }}">Fees &amp; Information</a></li>
                 <li><a href="{{ route('services.index') }}">Our Services</a></li>
                 <li><a href="{{ route('about') }}">About Us</a></li>
                 <li><a href="{{ route('contact') }}">Contact Us</a></li>
@@ -71,7 +72,7 @@
          data-dismissible data-notice-id="notice-{{ $announcement->id }}-{{ $announcement->updated_at->timestamp }}">
         <div class="container notice__inner">
             <p><x-icon name="{{ $announcement->type === 'warning' ? 'alert-triangle' : 'info' }}" class="w-5 h-5"/>
-                @if($announcement->title)<strong>{{ $announcement->title }} — </strong>@endif{{ $announcement->message }}</p>
+                @if($announcement->title)<strong>{{ $announcement->title }}:</strong> @endif{{ $announcement->message }}</p>
             <button type="button" class="notice__close" aria-label="Dismiss announcement" data-dismiss-notice>
                 <x-icon name="x" class="w-4 h-4"/>
             </button>
@@ -122,6 +123,7 @@
                 <li><a href="{{ route('about') }}">About the practice</a></li>
                 <li><a href="{{ route('services.index') }}">Our services</a></li>
                 <li><a href="{{ route('doctors') }}">Our doctors</a></li>
+                <li><a href="{{ route('fees') }}">Fees &amp; information</a></li>
                 <li><a href="{{ route('blog.index') }}">Health blog</a></li>
                 <li><a href="{{ route('booking') }}">Book an appointment</a></li>
                 <li><a href="{{ route('contact') }}">Contact us</a></li>
@@ -150,7 +152,7 @@
     <a href="tel:{{ preg_replace('/\s+/', '', setting('phone', '')) }}" class="mobile-cta__btn mobile-cta__btn--call">
         <x-icon name="phone" class="w-5 h-5"/> Call us</a>
     <a href="{{ route('booking') }}" class="mobile-cta__btn mobile-cta__btn--book">
-        <x-icon name="calendar-check" class="w-5 h-5"/> Book appointment</a>
+        <x-icon name="calendar-check" class="w-5 h-5"/> Book online</a>
 </div>
 
 <script>document.documentElement.classList.add('js');</script>

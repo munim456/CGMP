@@ -6,7 +6,7 @@
         isset($metaTitle) => $metaTitle,
         isset($post) && isset($post->meta_title) => $post->meta_title,
         isset($page) && $page->meta_title => $page->meta_title,
-        request()->routeIs('home') => $siteName . ' — ' . setting('tagline', 'Family GP in Cringila'),
+        request()->routeIs('home') => $siteName . ': ' . setting('tagline', 'Family GP in Cringila'),
         default => str_replace([':title', ':site'], [
             ucfirst(str_replace('-', ' ', request()->path() === '/' ? 'Home' : request()->path())),
             $siteName,
@@ -17,7 +17,7 @@
         ?? ($post->meta_description ?? null)
         ?? ($page->meta_description ?? null)
         ?? setting('meta_description_default')
-        ?? 'Cringila General Medical Practice — caring GPs open five days a week. Same-day appointments and walk-ins welcome. Book online with HealthEngine.';
+        ?? 'Cringila General Medical Practice: caring GPs open five days a week. Same-day appointments and walk-ins welcome. Book online with HealthEngine.';
 @endphp
 
 <meta name="description" content="{{ \Illuminate\Support\Str::limit($metaDescription, 160) }}">

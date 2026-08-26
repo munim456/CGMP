@@ -29,7 +29,7 @@
                     <li><x-icon name="check-circle" class="w-5 h-5"/> {{ $point }}</li>
                 @endforeach
             </ul>
-            <a href="{{ route('booking') }}" class="btn btn--primary">Book an appointment</a>
+            <a href="{{ route('booking') }}" class="btn btn--primary">Book online</a>
         </div>
     </div>
 </section>

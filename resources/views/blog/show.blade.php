@@ -49,7 +49,7 @@
             <span>Share:</span>
             <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}" target="_blank" rel="noopener" aria-label="Share on Facebook"><x-icon name="facebook" class="w-5 h-5"/></a>
             <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url()->current()) }}" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><x-icon name="external-link" class="w-5 h-5"/></a>
-            <a href="https://wa.me/?text={{ urlencode($post->title . ' — ' . url()->current()) }}" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><x-icon name="message-square" class="w-5 h-5"/></a>
+            <a href="https://wa.me/?text={{ urlencode($post->title . ' - ' . url()->current()) }}" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><x-icon name="message-square" class="w-5 h-5"/></a>
             <button type="button" data-copy-link="{{ url()->current() }}" aria-label="Copy link"><x-icon name="mail" class="w-5 h-5"/></button>
         </div>
     </div>

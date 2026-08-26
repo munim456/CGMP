@@ -21,7 +21,7 @@ class AnnouncementSeeder extends Seeder
         Announcement::query()->firstOrCreate(
             ['message' => 'Annual flu vaccination is recommended for everyone aged six months and over, ideally in April or May before the winter season begins. The vaccine offers the best protection in the first three to four months. Chat to your GP about protecting you and your family.'],
             [
-                'title' => 'Protect against influenza — vaccines now available',
+                'title' => 'Protect against influenza: vaccines now available',
                 'type' => 'info',
                 'image' => 'media/placeholders/notice-flu.jpg',
                 'button_text' => 'Call to book',

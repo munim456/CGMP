@@ -22,7 +22,7 @@ class SectionSeeder extends Seeder
         Section::store('highlights', [
             'items' => [
                 ['icon' => 'briefcase-medical', 'title' => 'Medical Treatment', 'text' => 'Comprehensive primary care for every stage of life.'],
-                ['icon' => 'activity', 'title' => 'Emergency Help', 'text' => 'Urgent concerns seen promptly — walk right in.'],
+                ['icon' => 'activity', 'title' => 'Emergency Help', 'text' => 'Urgent concerns seen promptly, walk right in.'],
                 ['icon' => 'user-round', 'title' => 'Medical Professionals', 'text' => 'A caring team dedicated to your wellbeing.'],
                 ['icon' => 'graduation-cap', 'title' => 'Qualified Doctors', 'text' => 'Fellowship-trained GPs with special interests.'],
             ],

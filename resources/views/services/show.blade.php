@@ -22,7 +22,7 @@
             <div class="aside-card">
                 <h2>Book this service</h2>
                 <p>Same-day appointments are available and walk-ins are welcome.</p>
-                <a href="{{ route('booking') }}" class="btn btn--primary btn--block">Book an appointment</a>
+                <a href="{{ route('booking') }}" class="btn btn--primary btn--block">Book online</a>
                 <a href="tel:{{ preg_replace('/\s+/', '', setting('phone', '')) }}" class="btn btn--ghost btn--block mt-1">Call {{ setting('phone') }}</a>
             </div>
         </aside>
