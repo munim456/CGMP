@@ -24,6 +24,11 @@
                 <input type="text" id="qualifications" name="qualifications" value="{{ old('qualifications', $doctor->qualifications) }}" placeholder="MBBS, FRACGP">
             </div>
             <div class="field">
+                <label for="special_interests">Special interests</label>
+                <input type="text" id="special_interests" name="special_interests" value="{{ old('special_interests', $doctor->special_interests) }}" placeholder="Women's health, Chronic disease management">
+                <p class="help">Shown in the doctors directory table. Separate with commas.</p>
+            </div>
+            <div class="field">
                 <label for="bio">Biography</label>
                 <textarea id="bio" name="bio" rows="10" class="rich-editor">{{ old('bio', $doctor->bio) }}</textarea>
             </div>

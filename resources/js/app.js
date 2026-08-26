@@ -180,3 +180,85 @@ document.querySelectorAll('[data-copy-link]').forEach((btn) => {
         }
     });
 });
+
+/* ---------- Back to top ---------- */
+const backToTop = document.querySelector('[data-back-to-top]');
+if (backToTop) {
+    const toggleBackToTop = () => { backToTop.hidden = window.scrollY < 480; };
+    toggleBackToTop();
+    window.addEventListener('scroll', toggleBackToTop, { passive: true });
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    });
+}
+
+/* ---------- Doctor directory: search, A-Z filter, sort ---------- */
+const doctorDirectory = document.querySelector('[data-doctor-directory]');
+if (doctorDirectory) {
+    const searchInput = doctorDirectory.querySelector('[data-doctor-search]');
+    const azButtons = [...doctorDirectory.querySelectorAll('[data-az-letter]')];
+    const table = doctorDirectory.querySelector('[data-doctor-table]');
+    const rows = [...doctorDirectory.querySelectorAll('[data-doctor-row]')];
+    const tbody = table?.querySelector('tbody');
+    const emptyState = doctorDirectory.querySelector('[data-doctor-empty]');
+    const sortHeaders = [...doctorDirectory.querySelectorAll('th.is-sortable')];
+
+    let activeLetter = 'all';
+    let sortKey = null;
+    let sortDir = 1;
+
+    // Gray out letters with no matching doctors.
+    const availableLetters = new Set(rows.map((row) => row.dataset.lastName.charAt(0).toUpperCase()));
+    azButtons.forEach((btn) => {
+        const letter = btn.dataset.azLetter;
+        if (letter !== 'all' && !availableLetters.has(letter)) {
+            btn.classList.add('is-disabled');
+            btn.disabled = true;
+        }
+    });
+
+    function applyFilters() {
+        const query = (searchInput?.value || '').trim().toLowerCase();
+        let visibleCount = 0;
+
+        rows.forEach((row) => {
+            const matchesLetter = activeLetter === 'all' || row.dataset.lastName.startsWith(activeLetter.toLowerCase());
+            const matchesQuery = !query || row.dataset.name.includes(query);
+            const visible = matchesLetter && matchesQuery;
+            row.hidden = !visible;
+            if (visible) visibleCount += 1;
+        });
+
+        if (emptyState) emptyState.hidden = visibleCount !== 0;
+        if (table) table.style.display = visibleCount === 0 ? 'none' : '';
+    }
+
+    function applySort() {
+        if (!sortKey || !tbody) return;
+        const dataKey = sortKey === 'name' ? 'lastName' : 'interests';
+        const sorted = [...rows].sort((a, b) => a.dataset[dataKey].localeCompare(b.dataset[dataKey]) * sortDir);
+        sorted.forEach((row) => tbody.appendChild(row));
+    }
+
+    searchInput?.addEventListener('input', applyFilters);
+
+    azButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            if (btn.disabled) return;
+            activeLetter = btn.dataset.azLetter;
+            azButtons.forEach((b) => b.classList.toggle('is-active', b === btn));
+            applyFilters();
+        });
+    });
+
+    sortHeaders.forEach((th) => {
+        th.addEventListener('click', () => {
+            const key = th.dataset.sort;
+            sortDir = sortKey === key ? -sortDir : 1;
+            sortKey = key;
+            sortHeaders.forEach((h) => h.classList.remove('is-sorted-asc', 'is-sorted-desc'));
+            th.classList.add(sortDir === 1 ? 'is-sorted-asc' : 'is-sorted-desc');
+            applySort();
+        });
+    });
+}
