@@ -19,7 +19,7 @@
                 <div data-reveal>
                     <ul class="text-list">
                         <li>For all general enquiries, please call
-                            <a href="tel:{{ preg_replace('/\s+/', '', setting('phone', '')) }}" class="text-link">{{ setting('phone') }}</a>
+                            <a href="tel:{{ tel_url(setting('phone')) }}" class="text-link">{{ setting('phone') }}</a>
                             during opening hours.</li>
                         <li>You can find us at {{ setting('address_line1') }}, {{ setting('address_suburb') }}.</li>
                         @if(setting('fax'))<li>Fax: {{ setting('fax') }}</li>@endif

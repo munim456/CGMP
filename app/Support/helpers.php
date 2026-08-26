@@ -23,6 +23,13 @@ if (! function_exists('section_data')) {
     }
 }
 
+if (! function_exists('tel_url')) {
+    function tel_url(?string $phone): string
+    {
+        return preg_replace('/[^\d+]/', '', (string) $phone);
+    }
+}
+
 if (! function_exists('image_url')) {
     function image_url(?string $path, string $fallback = ''): string
     {

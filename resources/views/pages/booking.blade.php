@@ -31,7 +31,7 @@
             <div class="info-card">
                 <h3><x-icon name="phone" class="w-5 h-5"/> Phone bookings</h3>
                 <p>Prefer to talk to us? Call during opening hours and our reception team will help.</p>
-                <a href="tel:{{ preg_replace('/\s+/', '', setting('phone', '')) }}" class="btn btn--primary">{{ setting('phone') }}</a>
+                <a href="tel:{{ tel_url(setting('phone')) }}" class="btn btn--primary">{{ setting('phone') }}</a>
             </div>
             <div class="info-card">
                 <h3><x-icon name="users" class="w-5 h-5"/> Walk-ins welcome</h3>

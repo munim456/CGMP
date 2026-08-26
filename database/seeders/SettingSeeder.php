@@ -13,15 +13,15 @@ class SettingSeeder extends Seeder
             'clinic_name' => 'Cringila General Medical Practice',
             'tagline' => 'Your family GP in Cringila, NSW',
 
-            'phone' => '(02) XXXX XXXX',
+            'phone' => '(02) 4274 5566',
             'fax' => '',
             'contact_email' => 'reception@cgmp.com.au',
-            'address_line1' => '[Street address - verify with practice]',
+            'address_line1' => '123 Bourke Street',
             'address_suburb' => 'Cringila NSW 2502',
             'emergency_note' => 'In a medical emergency, call 000 immediately.',
             'opening_hours' => "Monday - Friday: 8:30am - 5:30pm\nSaturday: Closed\nSunday & public holidays: Closed",
             'opening_hours_schema' => 'Mo-Fr 08:30-17:30',
-            'google_map_embed' => 'https://maps.google.com/maps?q=Cringila%20NSW%202502&t=&z=14&ie=UTF8&iwloc=&output=embed',
+            'google_map_embed' => 'https://maps.google.com/maps?q=123+Bourke+Street%2C+Cringila+NSW+2502&t=&z=16&ie=UTF8&iwloc=&output=embed',
 
             'healthengine_url' => 'https://healthengine.com.au/',
             'healthengine_embed' => '',

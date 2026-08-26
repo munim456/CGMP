@@ -12,7 +12,7 @@
 
             <p class="hero-card__label">Contact us</p>
             <p>{{ setting('address_line1') }}<br>{{ setting('address_suburb') }}</p>
-            <p><a href="tel:{{ preg_replace('/\s+/', '', setting('phone', '')) }}">{{ setting('phone') }}</a></p>
+            <p><a href="tel:{{ tel_url(setting('phone')) }}">{{ setting('phone') }}</a></p>
 
             <p class="hero-card__label">Opening hours</p>
             @foreach(preg_split('/\r\n|\r|\n/', trim(setting('opening_hours'))) as $line)

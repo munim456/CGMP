@@ -62,7 +62,7 @@
         <a href="{{ route('booking') }}" class="header-info-bar__link">
             <x-icon name="calendar-check" class="w-5 h-5"/> Book online</a>
         <span class="header-info-bar__sep" aria-hidden="true">|</span>
-        <a href="tel:{{ preg_replace('/\s+/', '', setting('phone', '')) }}" class="header-info-bar__link">
+        <a href="tel:{{ tel_url(setting('phone')) }}" class="header-info-bar__link">
             <x-icon name="phone" class="w-5 h-5"/> Call us</a>
     </div>
 </div>
@@ -92,7 +92,7 @@
                 <li><x-icon name="map-pin" class="w-5 h-5"/>
                     <span>{{ setting('address_line1') }}<br>{{ setting('address_suburb') }}</span></li>
                 <li><x-icon name="phone" class="w-5 h-5"/>
-                    <a href="tel:{{ preg_replace('/\s+/', '', setting('phone', '')) }}">{{ setting('phone') }}</a></li>
+                    <a href="tel:{{ tel_url(setting('phone')) }}">{{ setting('phone') }}</a></li>
                 <li><x-icon name="mail" class="w-5 h-5"/>
                     <a href="mailto:{{ setting('contact_email') }}">{{ setting('contact_email') }}</a></li>
             </ul>
@@ -149,7 +149,7 @@
 </footer>
 
 <div class="mobile-cta" aria-label="Quick actions">
-    <a href="tel:{{ preg_replace('/\s+/', '', setting('phone', '')) }}" class="mobile-cta__btn mobile-cta__btn--call">
+    <a href="tel:{{ tel_url(setting('phone')) }}" class="mobile-cta__btn mobile-cta__btn--call">
         <x-icon name="phone" class="w-5 h-5"/> Call us</a>
     <a href="{{ route('booking') }}" class="mobile-cta__btn mobile-cta__btn--book">
         <x-icon name="calendar-check" class="w-5 h-5"/> Book online</a>
