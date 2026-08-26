@@ -27,6 +27,14 @@ return Application::configure(basePath: dirname(__DIR__))
         });
 
         $exceptions->render(function (NotFoundHttpException $e, Request $request) {
+            if ($request->isMethod('GET') && ! $request->is('admin*', 'storage/*')) {
+                $hit = \App\Models\Redirect::lookup($request->getPathInfo());
+
+                if ($hit !== null) {
+                    return redirect()->to($hit['destination'], $hit['status_code']);
+                }
+            }
+
             if ($request->expectsJson()) {
                 return response()->json(['message' => 'Not found.'], 404);
             }
