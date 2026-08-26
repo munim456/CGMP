@@ -31,11 +31,11 @@
                     <table class="doctor-table" data-doctor-table>
                         <thead>
                             <tr>
-                                <th class="is-sortable" data-sort="name">
-                                    Name <x-icon name="chevron-down" class="w-4 h-4 sort-icon"/>
+                                <th class="is-sortable" data-sort="name" aria-sort="none">
+                                    <button type="button" class="sort-btn">Name <x-icon name="chevron-down" class="w-4 h-4 sort-icon"/></button>
                                 </th>
-                                <th class="is-sortable" data-sort="interests">
-                                    Special interests <x-icon name="chevron-down" class="w-4 h-4 sort-icon"/>
+                                <th class="is-sortable" data-sort="interests" aria-sort="none">
+                                    <button type="button" class="sort-btn">Special interests <x-icon name="chevron-down" class="w-4 h-4 sort-icon"/></button>
                                 </th>
                                 <th>Bookings</th>
                             </tr>

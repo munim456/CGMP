@@ -709,8 +709,13 @@ html.js [data-reveal].is-visible { opacity: 1; transform: none; }
 }
 .doctor-table thead th:first-child { border-radius: 10px 0 0 0; }
 .doctor-table thead th:last-child { border-radius: 0 10px 0 0; }
-.doctor-table th.is-sortable { cursor: pointer; user-select: none; }
+.doctor-table th.is-sortable { padding: 0; }
 .doctor-table th.is-sortable:hover { background: var(--primary-dark); }
+.doctor-table .sort-btn {
+    display: flex; align-items: center; width: 100%; padding: .9rem 1.15rem;
+    background: none; border: none; font: inherit; color: inherit;
+    letter-spacing: inherit; white-space: nowrap; cursor: pointer; user-select: none;
+}
 .doctor-table .sort-icon { margin-left: .25rem; opacity: .6; transition: transform .2s ease, opacity .2s ease; }
 .doctor-table th.is-sorted-asc .sort-icon { opacity: 1; }
 .doctor-table th.is-sorted-desc .sort-icon { opacity: 1; transform: rotate(180deg); }

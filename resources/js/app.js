@@ -133,6 +133,10 @@ if (slider) {
     slider.querySelector('.slider-btn--next')?.addEventListener('click', () => { show(current + 1); play(); });
     slider.addEventListener('mouseenter', stop);
     slider.addEventListener('mouseleave', play);
+    slider.addEventListener('focusin', stop);
+    slider.addEventListener('focusout', (e) => {
+        if (!slider.contains(e.relatedTarget)) play();
+    });
 
     let touchStartX = null;
     slider.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
@@ -202,6 +206,7 @@ if (doctorDirectory) {
     const tbody = table?.querySelector('tbody');
     const emptyState = doctorDirectory.querySelector('[data-doctor-empty]');
     const sortHeaders = [...doctorDirectory.querySelectorAll('th.is-sortable')];
+    const sortButtons = [...doctorDirectory.querySelectorAll('.sort-btn')];
 
     let activeLetter = 'all';
     let sortKey = null;
@@ -251,13 +256,18 @@ if (doctorDirectory) {
         });
     });
 
-    sortHeaders.forEach((th) => {
-        th.addEventListener('click', () => {
+    sortButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const th = btn.closest('th');
             const key = th.dataset.sort;
             sortDir = sortKey === key ? -sortDir : 1;
             sortKey = key;
-            sortHeaders.forEach((h) => h.classList.remove('is-sorted-asc', 'is-sorted-desc'));
+            sortHeaders.forEach((h) => {
+                h.classList.remove('is-sorted-asc', 'is-sorted-desc');
+                h.setAttribute('aria-sort', 'none');
+            });
             th.classList.add(sortDir === 1 ? 'is-sorted-asc' : 'is-sorted-desc');
+            th.setAttribute('aria-sort', sortDir === 1 ? 'ascending' : 'descending');
             applySort();
         });
     });
