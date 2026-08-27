@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
+use App\Models\Testimonial;
 use Illuminate\Contracts\View\View;
 
 class DoctorController extends Controller
@@ -12,6 +13,7 @@ class DoctorController extends Controller
     {
         return view('pages.doctors', [
             'doctors' => Doctor::query()->active()->get(),
+            'featuredTestimonial' => Testimonial::query()->active()->inRandomOrder()->first(),
         ]);
     }
 }
