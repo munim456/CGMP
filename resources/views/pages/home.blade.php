@@ -30,6 +30,22 @@
     </div>
 </section>
 
+@if($latestPosts->isNotEmpty())
+<section class="section" aria-label="Latest from the practice">
+    <div class="container">
+        <div class="section-head" data-reveal>
+            <h2>Latest from the practice</h2>
+            <a href="{{ route('blog.index') }}" class="read-more">View all articles <x-icon name="arrow-right" class="w-4 h-4"/></a>
+        </div>
+        <div class="grid grid--3 post-grid">
+            @foreach($latestPosts as $post)
+                @include('partials.post-card', ['post' => $post])
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
 <section class="section intro-block">
     <div class="container" data-reveal>
         <div class="prose prose--intro">

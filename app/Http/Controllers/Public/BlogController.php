@@ -26,7 +26,7 @@ class BlogController extends Controller
                     ->orWhere('body', 'like', $term));
             })
             ->latest('published_at')
-            ->paginate(9)
+            ->paginate(12)
             ->withQueryString();
 
         return view('blog.index', [

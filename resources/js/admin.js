@@ -7,9 +7,24 @@ if (typeof tinymce !== 'undefined') {
             menubar: false,
             plugins: 'lists link image table code help',
             toolbar: 'undo redo | blocks | bold italic underline | bullist numlist | link image table | blockquote removeformat | code',
-            images_upload_url: null,
-            automatic_uploads: false,
+            automatic_uploads: true,
             file_picker_types: 'image',
+            images_upload_handler: (blobInfo) => new Promise((resolve, reject) => {
+                const formData = new FormData();
+                formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+                fetch('/admin/posts/upload-image', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || '',
+                        Accept: 'application/json',
+                    },
+                    body: formData,
+                })
+                    .then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)))
+                    .then((data) => (data.location ? resolve(data.location) : reject('Upload failed')))
+                    .catch(() => reject('Image upload failed'));
+            }),
             skin: 'oxide',
             content_css: 'default',
             convert_urls: false,
@@ -57,6 +72,20 @@ if (slugSource && slugTarget) {
             .replace(/-+/g, '-');
     });
     slugTarget.addEventListener('input', () => { slugTarget.dataset.touched = '1'; });
+}
+
+/* ---------- Post status: toggle publish date vs scheduled date field ---------- */
+const statusSelect = document.querySelector('[data-status-select]');
+const publishedAtField = document.querySelector('[data-published-at-field]');
+const scheduledForField = document.querySelector('[data-scheduled-for-field]');
+if (statusSelect && publishedAtField && scheduledForField) {
+    const syncStatusFields = () => {
+        const isScheduled = statusSelect.value === 'scheduled';
+        scheduledForField.hidden = !isScheduled;
+        publishedAtField.hidden = isScheduled;
+    };
+    syncStatusFields();
+    statusSelect.addEventListener('change', syncStatusFields);
 }
 
 /* ---------- Image input previews ---------- */

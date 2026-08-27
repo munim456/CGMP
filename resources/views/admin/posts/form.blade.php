@@ -9,6 +9,19 @@
     @csrf
     @if($post->exists) @method('PUT') @endif
 
+    @if($errors->any())
+        <div class="alert alert--danger admin-form-errors">
+            <div>
+                <strong>Please fix the following before saving:</strong>
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
+
     <div class="admin-form-main">
         <section class="admin-panel">
             <div class="field">
@@ -26,7 +39,7 @@
 
             <div class="field">
                 <label for="excerpt">Short summary</label>
-                <textarea id="excerpt" name="excerpt" rows="2" maxlength="500">{{ old('excerpt', $post->excerpt) }}</textarea>
+                <textarea id="excerpt" name="excerpt" rows="2" maxlength="500">{{ old('excerpt', $post->getRawOriginal('excerpt')) }}</textarea>
                 <p class="help">One or two sentences shown on blog cards. Leave blank to use the first part of the article.</p>
             </div>
 
@@ -49,6 +62,11 @@
                 <textarea id="meta_description" name="meta_description" rows="3" maxlength="400">{{ old('meta_description', $post->meta_description) }}</textarea>
                 <p class="help"><span data-meta-count="meta_description"></span> Recommended: 120–160 characters.</p>
             </div>
+            <div class="field">
+                <label for="og_image">Social share image override</label>
+                <input type="text" id="og_image" name="og_image" value="{{ old('og_image', $post->og_image) }}" placeholder="media/posts/example.jpg">
+                <p class="help">Leave blank to use the featured image when the post is shared on Facebook/Twitter.</p>
+            </div>
         </section>
     </div>
 
@@ -57,26 +75,30 @@
             <h2>Publish</h2>
             <div class="field">
                 <label for="status">Status</label>
-                <select id="status" name="status">
+                <select id="status" name="status" data-status-select>
                     <option value="draft" @selected(old('status', $post->status) === 'draft')>Draft — hidden from website</option>
                     <option value="published" @selected(old('status', $post->status ?? 'published') === 'published')>Published — visible</option>
-                    @if($post->exists)
-                        <option value="scheduled" @selected(old('status', $post->status) === 'scheduled')>Scheduled (publish date below)</option>
-                    @endif
+                    <option value="scheduled" @selected(old('status', $post->status) === 'scheduled')>Scheduled — publishes automatically</option>
                 </select>
             </div>
-            <div class="field">
+            <div class="field" data-published-at-field>
                 <label for="published_at">Publish date</label>
                 <input type="datetime-local" id="published_at" name="published_at" value="{{ old('published_at', $post->published_at?->format('Y-m-d\TH:i')) }}">
-                <p class="help">Used when scheduling a post for the future.</p>
+                <p class="help">Leave blank to use the moment you save.</p>
+            </div>
+            <div class="field" data-scheduled-for-field>
+                <label for="scheduled_for">Scheduled for <span class="req">*</span></label>
+                <input type="datetime-local" id="scheduled_for" name="scheduled_for" value="{{ old('scheduled_for', $post->scheduled_for?->format('Y-m-d\TH:i')) }}">
+                <p class="help">Must be a future date and time. The post publishes automatically at this moment (checked every minute).</p>
             </div>
 
             <button type="submit" class="btn btn--primary btn--block btn--lg">
                 <x-icon name="save"/> {{ $post->exists ? 'Save changes' : 'Create post' }}
             </button>
             @if($post->exists)
-                <a href="{{ route('blog.show', $post) }}" target="_blank" class="btn btn--outline btn--block mt-2">
-                    <x-icon name="eye"/> Preview on site</a>
+                <a href="{{ \Illuminate\Support\Facades\URL::temporarySignedRoute('admin.posts.preview', now()->addHours(2), ['post' => $post->id]) }}"
+                   target="_blank" class="btn btn--outline btn--block mt-2">
+                    <x-icon name="eye"/> Preview</a>
             @endif
         </section>
 

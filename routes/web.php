@@ -24,6 +24,10 @@ Route::get('/services/{service:slug}', [ServiceController::class, 'show'])->name
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{post:slug}', [BlogController::class, 'show'])->name('blog.show');
 
+Route::get('/admin/posts/{post}/preview', [Admin\PostController::class, 'preview'])
+    ->middleware('signed')
+    ->name('admin.posts.preview');
+
 Route::get('/book-appointment', BookingController::class)->name('booking');
 
 Route::get('/contact', [ContactController::class, 'show'])->name('contact');
@@ -54,6 +58,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::resource('posts', Admin\PostController::class)->except('show');
         Route::patch('posts/{post}/toggle-publish', [Admin\PostController::class, 'togglePublish'])->name('posts.toggle-publish');
+        Route::post('posts/upload-image', [Admin\PostController::class, 'uploadImage'])->name('posts.upload-image');
 
         Route::resource('categories', Admin\CategoryController::class)->except('show');
         Route::resource('tags', Admin\TagController::class)->except('show');

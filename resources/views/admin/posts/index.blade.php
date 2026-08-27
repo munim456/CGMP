@@ -11,6 +11,13 @@
             <option value="">All statuses</option>
             <option value="draft" @selected(request('status') === 'draft')>Draft</option>
             <option value="published" @selected(request('status') === 'published')>Published</option>
+            <option value="scheduled" @selected(request('status') === 'scheduled')>Scheduled</option>
+        </select>
+        <select name="category" aria-label="Filter by category">
+            <option value="">All categories</option>
+            @foreach($categories as $category)
+                <option value="{{ $category->id }}" @selected((string) request('category') === (string) $category->id)>{{ $category->name }}</option>
+            @endforeach
         </select>
         <button type="submit" class="btn btn--outline btn--sm">Filter</button>
     </form>
@@ -35,7 +42,13 @@
                 </td>
                 <td>{{ $post->category?->name ?? '—' }}</td>
                 <td><span class="badge {{ $post->status === 'published' ? 'badge--success' : ($post->status === 'scheduled' ? 'badge--warning' : 'badge--neutral') }}">{{ $post->status }}</span></td>
-                <td>{{ $post->published_at?->format('j M Y') ?? '—' }}</td>
+                <td>
+                    @if($post->status === 'scheduled' && $post->scheduled_for)
+                        Publishes {{ $post->scheduled_for->format('j M Y, g:ia') }}
+                    @else
+                        {{ $post->published_at?->format('j M Y') ?? '—' }}
+                    @endif
+                </td>
                 <td class="table-actions">
                     <form method="POST" action="{{ route('admin.posts.toggle-publish', $post) }}">
                         @csrf

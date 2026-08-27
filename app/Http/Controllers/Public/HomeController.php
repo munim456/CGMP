@@ -18,7 +18,7 @@ class HomeController extends Controller
             'highlights' => section_data('highlights')['items'] ?? [],
             'about' => section_data('about'),
             'bookingStrip' => section_data('booking_strip'),
-            'latestPosts' => Post::query()->published()->with('category')->latest('published_at')->take(4)->get(),
+            'latestPosts' => Post::query()->published()->with(['category', 'author'])->latest('published_at')->take(3)->get(),
             'services' => Service::query()->active()->take(6)->get(),
             'panels' => Announcement::query()->live()->whereNotNull('image')->take(3)->get(),
             'announcements' => Announcement::query()->live()->whereNull('image')->get(),

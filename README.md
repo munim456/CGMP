@@ -70,5 +70,6 @@ Three palettes ship as CSS variable sets in `resources/css/public-base.css`. The
 4. `php artisan migrate --force --seed` (seed once), `php artisan storage:link`, `php artisan config:cache route:cache view:cache`.
 5. Ensure `storage/` and `bootstrap/cache` are writable.
 6. Upload logo/favicon/OG image via admin after first login.
+7. Add a cron entry so scheduled blog posts publish automatically: `* * * * * cd /path-to-project && php artisan schedule:run >> /dev/null 2>&1`. Without this, posts saved with status "Scheduled" stay unpublished past their scheduled time.
 
 See `docs/ADMIN-GUIDE.md` for the content-editor walkthrough.

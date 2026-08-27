@@ -1,6 +1,14 @@
 @extends('layouts.public')
 
 @section('content')
+@if(!empty($isPreview))
+    <div class="notice notice--warning" role="status">
+        <div class="container notice__inner">
+            <p><x-icon name="info" class="w-5 h-5"/> <strong>Preview:</strong> this post is {{ $post->status }}.
+                @if($post->status !== 'published') It is not visible to the public yet. @endif</p>
+        </div>
+    </div>
+@endif
 <article class="section blog-single">
     <div class="container narrow">
         <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -15,7 +23,8 @@
             @endif
             <h1>{{ $post->title }}</h1>
             <div class="blog-single__meta">
-                <time datetime="{{ $post->published_at->toDateString() }}">{{ $post->published_at->format('j F Y') }}</time>
+                @php($displayDate = $post->published_at ?? $post->scheduled_for ?? $post->updated_at)
+                <time datetime="{{ $displayDate->toDateString() }}">{{ $displayDate->format('j F Y') }}</time>
                 @if($post->author)
                     <span>· By {{ $post->author->name }}</span>
                 @endif
@@ -48,9 +57,10 @@
         <div class="share-row" data-reveal aria-label="Share this article">
             <span>Share:</span>
             <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}" target="_blank" rel="noopener" aria-label="Share on Facebook"><x-icon name="facebook" class="w-5 h-5"/></a>
+            <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($post->title) }}" target="_blank" rel="noopener" aria-label="Share on X"><x-icon name="x" class="w-5 h-5"/></a>
             <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url()->current()) }}" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><x-icon name="external-link" class="w-5 h-5"/></a>
-            <a href="https://wa.me/?text={{ urlencode($post->title . ' - ' . url()->current()) }}" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><x-icon name="message-square" class="w-5 h-5"/></a>
-            <button type="button" data-copy-link="{{ url()->current() }}" aria-label="Copy link"><x-icon name="mail" class="w-5 h-5"/></button>
+            <a href="mailto:?subject={{ urlencode($post->title) }}&body={{ urlencode(url()->current()) }}" aria-label="Share via Email"><x-icon name="mail" class="w-5 h-5"/></a>
+            <button type="button" data-copy-link="{{ url()->current() }}" aria-label="Copy link"><x-icon name="link" class="w-5 h-5"/></button>
         </div>
     </div>
 </article>
