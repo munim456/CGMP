@@ -514,7 +514,7 @@ html.js [data-reveal].is-visible { opacity: 1; transform: none; }
 /* ======== IPN-style homepage ======== */
 .hero-photo { position: relative; display: flex; align-items: center; min-height: 540px; overflow: hidden; }
 .hero-photo__bg { position: absolute; inset: 0; }
-.hero-photo__bg img { width: 100%; height: 100%; object-fit: cover; }
+.hero-photo__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 32%; }
 .hero-photo__bg::after {
     content: ""; position: absolute; inset: 0;
     background: linear-gradient(100deg, rgba(13,53,93,.35) 0%, rgba(13,53,93,.08) 45%, transparent 70%),
