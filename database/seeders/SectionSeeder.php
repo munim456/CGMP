@@ -32,6 +32,7 @@ class SectionSeeder extends Seeder
 
         Section::store('about', [
             'heading' => 'Caring for the Illawarra community',
+            'image' => 'media/placeholders/about-side.jpg',
             'body' => "<p>Cringila General Medical Practice is open <strong>five days a week</strong>, offering comprehensive healthcare for individuals and families in Cringila and surrounding suburbs.</p><p>Our GPs have special interests in mental health, men{$apostrophe}s health, women{$apostrophe}s health and chronic disease management. Same-day appointments are available and walk-ins are always welcome.</p>",
             'points' => [
                 'Open five days a week',

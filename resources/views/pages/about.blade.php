@@ -38,7 +38,7 @@
             @endif
         </div>
         <div class="split__text" data-reveal>
-            <h2>Why patients choose us</h2>
+            <h2>{{ $about['heading'] ?? 'Why patients choose us' }}</h2>
             <ul class="tick-list">
                 @foreach($about['points'] ?? [] as $point)
                     <li><x-icon name="check-circle" class="w-5 h-5"/> {{ $point }}</li>
