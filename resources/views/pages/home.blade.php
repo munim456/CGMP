@@ -59,22 +59,11 @@
         <div class="section-head section-head--center">
             <h2>What our patients say</h2>
         </div>
-        <div class="testimonial-slider" id="testimonial-slider">
-            <button type="button" class="slider-btn slider-btn--prev" aria-label="Previous testimonial"><x-icon name="chevron-left" class="w-6 h-6"/></button>
-            <div class="testimonial-track" id="testimonial-track">
-                @foreach($testimonials as $testimonial)
-                    <figure class="testimonial-slide">
-                        <blockquote>{{ $testimonial->content }}</blockquote>
-                        <figcaption>
-                            <strong>{{ $testimonial->name }}</strong>
-                            @if($testimonial->context)<span>{{ $testimonial->context }}</span>@endif
-                        </figcaption>
-                    </figure>
-                @endforeach
-            </div>
-            <button type="button" class="slider-btn slider-btn--next" aria-label="Next testimonial"><x-icon name="chevron-right" class="w-6 h-6"/></button>
-            <div class="slider-dots" id="testimonial-dots" role="tablist" aria-label="Choose testimonial"></div>
-        </div>
+        <div data-react-root="testimonials" data-testimonials="{{ $testimonials->map(fn ($t) => [
+            'content' => $t->content,
+            'name' => $t->name,
+            'context' => $t->context,
+        ])->toJson() }}"></div>
     </div>
 </section>
 @endif

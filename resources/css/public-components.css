@@ -177,8 +177,7 @@
     content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
     background: var(--gradient-brand);
 }
-.testimonial-slide.is-active { display: block; animation: fadeSlide .5s ease; }
-@keyframes fadeSlide { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+.testimonial-slide.is-current { display: block; }
 .testimonial-quote { color: var(--primary-tint-2); margin-bottom: .75rem; }
 .testimonial-quote path { fill: currentColor; stroke: none; }
 .testimonial-slide blockquote {

@@ -98,59 +98,7 @@ if (counters.length) {
     counters.forEach((el) => countObserver.observe(el));
 }
 
-/* ---------- Testimonial slider ---------- */
-const slider = document.getElementById('testimonial-slider');
-if (slider) {
-    const slides = [...slider.querySelectorAll('.testimonial-slide')];
-    const dotsWrap = document.getElementById('testimonial-dots');
-    let current = 0;
-    let timer = null;
-
-    const show = (index) => {
-        current = (index + slides.length) % slides.length;
-        slides.forEach((s, i) => s.classList.toggle('is-active', i === current));
-        dotsWrap.querySelectorAll('button').forEach((d, i) => d.setAttribute('aria-selected', String(i === current)));
-    };
-
-    const play = () => {
-        if (prefersReducedMotion || slides.length < 2) return;
-        stop();
-        timer = setInterval(() => show(current + 1), 6500);
-    };
-    const stop = () => { if (timer) clearInterval(timer); };
-
-    slides.forEach((_, i) => {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.setAttribute('role', 'tab');
-        dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-        dot.setAttribute('aria-label', `Testimonial ${i + 1}`);
-        dot.addEventListener('click', () => { show(i); play(); });
-        dotsWrap.appendChild(dot);
-    });
-
-    slider.querySelector('.slider-btn--prev')?.addEventListener('click', () => { show(current - 1); play(); });
-    slider.querySelector('.slider-btn--next')?.addEventListener('click', () => { show(current + 1); play(); });
-    slider.addEventListener('mouseenter', stop);
-    slider.addEventListener('mouseleave', play);
-    slider.addEventListener('focusin', stop);
-    slider.addEventListener('focusout', (e) => {
-        if (!slider.contains(e.relatedTarget)) play();
-    });
-
-    let touchStartX = null;
-    slider.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
-    slider.addEventListener('touchend', (e) => {
-        if (touchStartX === null) return;
-        const delta = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(delta) > 45) show(current + (delta < 0 ? 1 : -1));
-        touchStartX = null;
-        play();
-    }, { passive: true });
-
-    show(0);
-    play();
-}
+/* ---------- Testimonial slider: see resources/js/react/TestimonialsCarousel.jsx ---------- */
 
 /* ---------- Dismissible announcements ---------- */
 document.querySelectorAll('[data-dismissible]').forEach((notice) => {
