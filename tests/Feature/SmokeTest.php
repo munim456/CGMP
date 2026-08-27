@@ -22,8 +22,8 @@ class SmokeTest extends TestCase
 
         $response->assertOk();
         $response->assertSee('Cringila General Medical Practice');
-        $response->assertSee('Meet our doctors');
-        $response->assertSee('Dr Homayera Noor');
+        $response->assertSee('Latest from the practice');
+        $response->assertSee('New patients welcome');
     }
 
     public function test_public_pages_render(): void
