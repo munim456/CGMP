@@ -4,7 +4,7 @@
 
 <section class="hero-photo">
     <div class="hero-photo__bg" aria-hidden="true">
-        <img src="{{ image_url($hero['image'] ?? null, 'media/placeholders/hero-bg.jpg') }}" alt="" loading="eager">
+        <img src="{{ image_url($hero['image'] ?? null, 'storage/media/placeholders/hero-bg.jpg') }}" alt="" loading="eager">
     </div>
     <div class="container hero-photo__wrap">
         <div class="hero-card">

@@ -532,8 +532,8 @@ html.js [data-reveal].is-visible { opacity: 1; transform: none; }
 .hero-card h1 { font-size: clamp(1.5rem, 3vw, 2.05rem); line-height: 1.2; margin-bottom: .5rem; }
 .hero-card__label { font-weight: 700; font-size: 1rem; color: var(--ink); margin: 1.15rem 0 .25rem; }
 .hero-card p { margin: 0 0 .25rem; font-size: .98rem; line-height: 1.55; }
-.hero-card a { color: var(--primary); text-decoration: underline; text-underline-offset: 3px; }
-.hero-card a:hover { color: var(--primary-dark); }
+.hero-card p a { color: var(--primary); text-decoration: underline; text-underline-offset: 3px; }
+.hero-card p a:hover { color: var(--primary-dark); }
 .hero-card__hours { color: var(--text); }
 .hero-card__book { margin-top: 1.35rem; width: 100%; justify-content: center; }
 
