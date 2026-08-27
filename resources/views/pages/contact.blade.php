@@ -4,9 +4,14 @@
 <section class="page-hero">
     <div class="container" data-reveal>
         <h1>Contact us</h1>
-        <p class="page-hero__sub">Thank you for visiting the website of {{ setting('clinic_name') }}.
-            Please feel free to contact us with any enquiries you may have about our practice.
-            We would love to hear from you.</p>
+        <p class="page-hero__sub">Thank you for visiting the website of {{ setting('clinic_name') }}. Whether you have a question about
+            an appointment, a billing enquiry, or general feedback about your visit, our reception team is happy to help.
+            Call us during opening hours, drop us a message below, or find us at the address and map further down this page.</p>
+        <div class="chip-row" style="margin-top:1.1rem">
+            <span class="chip chip--soft"><x-icon name="phone" class="w-4 h-4"/> {{ setting('phone') }}</span>
+            <span class="chip chip--soft"><x-icon name="clock" class="w-4 h-4"/> Open 5 days a week</span>
+            <span class="chip chip--soft"><x-icon name="map-pin" class="w-4 h-4"/> {{ setting('address_suburb') }}</span>
+        </div>
     </div>
 </section>
 

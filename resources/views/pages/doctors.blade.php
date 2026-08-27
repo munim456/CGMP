@@ -4,7 +4,12 @@
 <section class="page-hero">
     <div class="container" data-reveal>
         <h1>Our doctors</h1>
-        <p class="page-hero__sub">Our doctors are experienced in every aspect of family health and can help you at any stage of life. Some GPs also have extra qualifications and areas of special interest.</p>
+        <p class="page-hero__sub">Our doctors are experienced in every aspect of family health and can help you at any stage of life, from newborn checks to aged care. Many of our GPs hold extra qualifications and areas of special interest, so you can find the right fit for your family and stay with the same doctor as your needs change over time.</p>
+        <div class="chip-row" style="margin-top:1.1rem">
+            <span class="chip chip--soft"><x-icon name="calendar-check" class="w-4 h-4"/> Same-day appointments</span>
+            <span class="chip chip--soft"><x-icon name="users" class="w-4 h-4"/> Walk-ins welcome</span>
+            <span class="chip chip--soft"><x-icon name="heart-pulse" class="w-4 h-4"/> Bulk billing available</span>
+        </div>
     </div>
 </section>
 
