@@ -8,6 +8,21 @@
     </div>
 </section>
 
+@if(!empty($about['stats']))
+<section class="section--flush">
+    <div class="container">
+        <div class="stats-row" data-reveal>
+            @foreach($about['stats'] as $stat)
+                <div class="stat">
+                    <span class="stat__number"><span class="count-up" data-count-to="{{ $stat['value'] }}">0</span>{{ $stat['suffix'] ?? '' }}</span>
+                    <span class="stat__label">{{ $stat['label'] }}</span>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
 <section class="section">
     <div class="container narrow prose" data-reveal>
         {!! $page->body !!}
@@ -30,36 +45,6 @@
                 @endforeach
             </ul>
             <a href="{{ route('booking') }}" class="btn btn--primary">Book online</a>
-        </div>
-    </div>
-</section>
-@endif
-
-@if($doctors->isNotEmpty())
-<section class="section">
-    <div class="container">
-        <div class="section-head section-head--center" data-reveal>
-            <p class="eyebrow">Our team</p>
-            <h2>Your doctors at {{ setting('clinic_name') }}</h2>
-        </div>
-        <div class="grid grid--2 doctor-grid doctor-grid--detailed">
-            @foreach($doctors as $doctor)
-                <article class="doctor-card doctor-card--row" data-reveal>
-                    <div class="doctor-card__photo doctor-card__photo--sm">
-                        @if($doctor->photo)
-                            <img src="{{ image_url($doctor->photo) }}" alt="Photo of {{ $doctor->name }}" loading="lazy">
-                        @else
-                            <span class="avatar-initials">{{ collect(explode(' ', $doctor->name))->map(fn ($w) => mb_substr($w, 0, 1))->implode('') }}</span>
-                        @endif
-                    </div>
-                    <div>
-                        <h3>{{ $doctor->name }}</h3>
-                        @if($doctor->role)<p class="doctor-card__role">{{ $doctor->role }}</p>@endif
-                        @if($doctor->qualifications)<p class="doctor-card__quals">{{ $doctor->qualifications }}</p>@endif
-                        <div class="prose prose--sm">{!! $doctor->bio !!}</div>
-                    </div>
-                </article>
-            @endforeach
         </div>
     </div>
 </section>

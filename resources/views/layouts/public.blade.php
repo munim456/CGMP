@@ -6,10 +6,7 @@
     @include('partials.meta')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/aileron@5/index.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/aileron@5/300.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/aileron@5/600.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/aileron@5/700.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@600;700;800&family=Noto+Sans:wght@400;500;600;700&display=swap">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     {!! setting('analytics_code') !!}
 </head>
@@ -41,12 +38,12 @@
 
         <nav class="main-nav" id="main-nav" aria-label="Main navigation">
             <ul>
-                <li><a href="{{ route('booking') }}" class="nav-book-pill"><x-icon name="calendar-check" class="w-5 h-5"/> Book Online</a></li>
-                <li><a href="{{ route('doctors') }}">Our Doctors</a></li>
-                <li><a href="{{ route('fees') }}">Fees &amp; Information</a></li>
-                <li><a href="{{ route('services.index') }}">Our Services</a></li>
-                <li><a href="{{ route('about') }}">About Us</a></li>
-                <li><a href="{{ route('contact') }}">Contact Us</a></li>
+                <li><a href="{{ route('booking') }}" class="nav-book-pill @if(request()->routeIs('booking')) is-active @endif" @if(request()->routeIs('booking')) aria-current="page" @endif><x-icon name="calendar-check" class="w-5 h-5"/> Book Online</a></li>
+                <li><a href="{{ route('doctors') }}" class="@if(request()->routeIs('doctors')) is-active @endif" @if(request()->routeIs('doctors')) aria-current="page" @endif>Our Doctors</a></li>
+                <li><a href="{{ route('fees') }}" class="@if(request()->routeIs('fees')) is-active @endif" @if(request()->routeIs('fees')) aria-current="page" @endif>Fees &amp; Information</a></li>
+                <li><a href="{{ route('services.index') }}" class="@if(request()->routeIs('services.*')) is-active @endif" @if(request()->routeIs('services.*')) aria-current="page" @endif>Our Services</a></li>
+                <li><a href="{{ route('about') }}" class="@if(request()->routeIs('about')) is-active @endif" @if(request()->routeIs('about')) aria-current="page" @endif>About Us</a></li>
+                <li><a href="{{ route('contact') }}" class="@if(request()->routeIs('contact')) is-active @endif" @if(request()->routeIs('contact')) aria-current="page" @endif>Contact Us</a></li>
             </ul>
         </nav>
 

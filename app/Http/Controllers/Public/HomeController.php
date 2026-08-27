@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use App\Models\Announcement;
-use App\Models\Doctor;
 use App\Models\Post;
 use App\Models\Service;
 use App\Models\Testimonial;
@@ -21,7 +20,6 @@ class HomeController extends Controller
             'bookingStrip' => section_data('booking_strip'),
             'latestPosts' => Post::query()->published()->with('category')->latest('published_at')->take(4)->get(),
             'services' => Service::query()->active()->take(6)->get(),
-            'doctors' => Doctor::query()->active()->get(),
             'panels' => Announcement::query()->live()->whereNotNull('image')->take(3)->get(),
             'announcements' => Announcement::query()->live()->whereNull('image')->get(),
             'testimonials' => Testimonial::query()->active()->get(),

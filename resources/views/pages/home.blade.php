@@ -53,36 +53,6 @@
     </section>
 @endforeach
 
-<section class="section section--tint doctors-home" id="our-doctors">
-    <div class="container">
-        <div class="section-head section-head--center">
-            <h2>Meet our doctors</h2>
-            <p class="section-head__lead">Experienced in every aspect of family health, with some doctors
-                holding extra qualifications in women's health, men's health, mental health and chronic
-                disease management.</p>
-        </div>
-        <div class="grid grid--{{ min(3, max(2, $doctors->count())) }} doctor-grid">
-            @foreach($doctors as $doctor)
-                <article class="doctor-card">
-                    <div class="doctor-card__photo">
-                        @if($doctor->photo)
-                            <img src="{{ image_url($doctor->photo) }}" alt="Photo of {{ $doctor->name }}" loading="lazy">
-                        @else
-                            <span class="avatar-initials">{{ collect(explode(' ', $doctor->name))->map(fn ($w) => mb_substr($w, 0, 1))->implode('') }}</span>
-                        @endif
-                    </div>
-                    <h3>{{ $doctor->name }}</h3>
-                    @if($doctor->role)<p class="doctor-card__role">{{ $doctor->role }}</p>@endif
-                    @if($doctor->qualifications)<p class="doctor-card__quals">{{ $doctor->qualifications }}</p>@endif
-                </article>
-            @endforeach
-        </div>
-        <div class="center">
-            <a href="{{ route('doctors') }}" class="btn btn--outline">Read doctor bios <x-icon name="arrow-right" class="w-4 h-4"/></a>
-        </div>
-    </div>
-</section>
-
 @if($testimonials->isNotEmpty())
 <section class="section testimonials" aria-label="Patient feedback">
     <div class="container narrow">

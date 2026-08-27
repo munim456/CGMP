@@ -4,7 +4,7 @@
 <section class="page-hero">
     <div class="container" data-reveal>
         <h1>Our doctors</h1>
-        <p class="page-hero__sub">Experienced GPs who take the time to listen. Search or browse by last name to find the right doctor for you.</p>
+        <p class="page-hero__sub">Our doctors are experienced in every aspect of family health and can help you at any stage of life. Some GPs also have extra qualifications and areas of special interest.</p>
     </div>
 </section>
 
@@ -15,7 +15,7 @@
                 <div class="doctor-directory__toolbar">
                     <div class="search-field doctor-directory__search">
                         <x-icon name="search" class="w-4 h-4"/>
-                        <input type="search" placeholder="Search by name…" aria-label="Search doctors by name" data-doctor-search>
+                        <input type="search" placeholder="Search by doctor name or specialty…" aria-label="Search doctors by name or specialty" data-doctor-search>
                     </div>
                     <p class="doctor-directory__label">Filter results by last name</p>
                 </div>
@@ -67,7 +67,15 @@
                                         </div>
                                     </td>
                                     <td data-label="Special interests">
-                                        <span class="doctor-table__interests">{{ $doctor->special_interests ?: '-' }}</span>
+                                        @if($doctor->special_interests)
+                                            <ul class="doctor-table__interests-list">
+                                                @foreach(array_filter(array_map('trim', explode(',', $doctor->special_interests))) as $interest)
+                                                    <li>{{ $interest }}</li>
+                                                @endforeach
+                                            </ul>
+                                        @else
+                                            <span class="doctor-table__interests">-</span>
+                                        @endif
                                     </td>
                                     <td data-label="Bookings">
                                         <a href="{{ route('booking') }}" class="btn btn--outline btn--sm">Book now</a>

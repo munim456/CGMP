@@ -228,7 +228,7 @@ if (doctorDirectory) {
 
         rows.forEach((row) => {
             const matchesLetter = activeLetter === 'all' || row.dataset.lastName.startsWith(activeLetter.toLowerCase());
-            const matchesQuery = !query || row.dataset.name.includes(query);
+            const matchesQuery = !query || row.dataset.name.includes(query) || row.dataset.interests.includes(query);
             const visible = matchesLetter && matchesQuery;
             row.hidden = !visible;
             if (visible) visibleCount += 1;
