@@ -23,7 +23,7 @@ class SettingSeeder extends Seeder
             'opening_hours_schema' => 'Mo-Fr 08:30-17:30',
             'google_map_embed' => 'https://maps.google.com/maps?q=45+Wentworth+Street%2C+Cringila+NSW+2502&t=&z=16&ie=UTF8&iwloc=&output=embed',
 
-            'healthengine_url' => 'https://healthengine.com.au/',
+            'healthengine_url' => 'https://healthengine.com.au/facility/cringila-gmp',
             'healthengine_embed' => '',
             'walk_in_note' => 'Walk-in appointments are welcome. Patients with a booked appointment are seen first.',
 
