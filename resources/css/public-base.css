@@ -110,7 +110,7 @@ ul { padding-left: 0; list-style: none; }
 pre { font-family: inherit; white-space: pre-line; margin: 0; }
 code { background: var(--primary-tint); padding: .1em .35em; border-radius: 6px; font-size: .9em; }
 
-.icon { flex-shrink: 0; vertical-align: -0.18em; }
+.icon { width: 20px; height: 20px; flex-shrink: 0; vertical-align: -0.18em; }
 
 .container { max-width: var(--container); margin-inline: auto; padding-inline: clamp(1rem, 4vw, 2rem); }
 .narrow { max-width: 800px; }
