@@ -259,10 +259,11 @@ body.nav-open .nav-toggle .icon--close { display: block; }
 }
 .chip--light { background: rgba(255,255,255,.16); color: #fff; border: 1px solid rgba(255,255,255,.4); backdrop-filter: blur(4px); }
 .chip--soft { background: var(--primary-tint); color: var(--primary-darker); }
+.chip--accent { background: color-mix(in srgb, var(--accent) 18%, #fff); color: var(--accent-dark); }
 .chip--filter { border: 1.5px solid var(--border); color: var(--text); background: #fff; transition: all .2s ease; }
 .chip--filter:hover { border-color: var(--primary); color: var(--primary-dark); }
-.chip--filter.chip--active { background: var(--primary); border-color: var(--primary); color: #fff; }
-.chip-row { display: flex; flex-wrap: wrap; gap: .55rem; margin-bottom: 2rem; }
+.chip--filter.chip--active { background: var(--gradient-brand); border-color: transparent; color: #fff; }
+.chip-row { display: flex; flex-wrap: wrap; align-items: center; gap: .55rem; margin-bottom: 1.5rem; }
 
 .badge { font-size: .75rem; font-weight: 700; padding: .2rem .65rem; border-radius: 99px; text-transform: capitalize; }
 .badge--success { background: var(--success-bg); color: var(--success-text); }

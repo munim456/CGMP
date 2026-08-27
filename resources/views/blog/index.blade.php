@@ -8,7 +8,7 @@
     </div>
 </section>
 
-<section class="section section--tint blog-index-section">
+<section class="section blog-index-section">
     <div class="container">
         <form method="GET" action="{{ route('blog.index') }}" class="blog-filters" role="search" data-reveal>
             <div class="search-field">
@@ -33,6 +33,11 @@
         </div>
 
         @if($posts->isNotEmpty())
+            <p class="blog-results-count">
+                {{ $posts->total() }} {{ \Illuminate\Support\Str::plural('article', $posts->total()) }}
+                @if(request()->filled('category')) in {{ $categories->firstWhere('slug', request('category'))?->name }} @endif
+                @if(request()->filled('q')) matching &ldquo;{{ request('q') }}&rdquo; @endif
+            </p>
             <div class="grid grid--3 post-grid blog-post-grid">
                 @foreach($posts as $post)
                     @include('partials.post-card', ['post' => $post])

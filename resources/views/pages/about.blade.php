@@ -49,6 +49,4 @@
     </div>
 </section>
 @endif
-
-@include('partials.booking-strip-cta')
 @endsection

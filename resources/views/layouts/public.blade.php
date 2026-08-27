@@ -42,6 +42,7 @@
                 <li><a href="{{ route('booking') }}" class="nav-book-pill @if(request()->routeIs('booking')) is-active @endif" @if(request()->routeIs('booking')) aria-current="page" @endif><x-icon name="calendar-check" class="w-5 h-5"/> Book Online</a></li>
                 <li><a href="{{ route('doctors') }}" class="@if(request()->routeIs('doctors')) is-active @endif" @if(request()->routeIs('doctors')) aria-current="page" @endif>Our Doctors</a></li>
                 <li><a href="{{ route('services.index') }}" class="@if(request()->routeIs('services.*')) is-active @endif" @if(request()->routeIs('services.*')) aria-current="page" @endif>Our Services</a></li>
+                <li><a href="{{ route('blog.index') }}" class="@if(request()->routeIs('blog.*')) is-active @endif" @if(request()->routeIs('blog.*')) aria-current="page" @endif>Health Blog</a></li>
                 <li><a href="{{ route('about') }}" class="@if(request()->routeIs('about')) is-active @endif" @if(request()->routeIs('about')) aria-current="page" @endif>About Us</a></li>
                 <li><a href="{{ route('contact') }}" class="@if(request()->routeIs('contact')) is-active @endif" @if(request()->routeIs('contact')) aria-current="page" @endif>Contact Us</a></li>
             </ul>
