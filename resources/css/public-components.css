@@ -215,6 +215,13 @@
 .booking-strip h2 { color: #fff; margin-bottom: .3em; }
 .booking-strip p { margin: 0; color: rgba(255,255,255,.85); max-width: 52ch; }
 
+/* Doctors/Services/About/Contact stack several full-padding .section
+   blocks back to back, which reads as too much dead air between short
+   blocks of content. Tighten rhythm on these pages only. */
+body.compact-page .section { padding-block: clamp(2rem, 4vw, 3.25rem); }
+body.compact-page .section-head { margin-bottom: 2rem; }
+body.compact-page .stats-row { margin-top: 1.75rem; }
+
 /* ============ Page hero (inner pages) ============ */
 .page-hero {
     background:

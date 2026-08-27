@@ -11,7 +11,7 @@
     @stack('scripts')
     {!! setting('analytics_code') !!}
 </head>
-<body>
+<body class="@if(request()->routeIs(['doctors', 'services.*', 'about', 'contact'])) compact-page @endif">
 <a class="skip-link" href="#main">Skip to main content</a>
 
 <div class="a11y-toolbar">
