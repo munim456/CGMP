@@ -1,5 +1,10 @@
 @extends('layouts.public')
 
+@push('scripts')
+    @viteReactRefresh
+    @vite(['resources/js/react-entry.jsx'])
+@endpush
+
 @section('content')
 
 <section class="hero-photo">
@@ -26,7 +31,7 @@
 </section>
 
 <section class="section intro-block">
-    <div class="container">
+    <div class="container" data-reveal>
         <div class="prose prose--intro">
             {!! $about['body'] !!}
         </div>
@@ -37,10 +42,10 @@
 
 @foreach($panels as $panel)
     <section class="media-panel @if($loop->odd) media-panel--rev @endif">
-        <div class="media-panel__img">
+        <div class="media-panel__img" data-reveal>
             <img src="{{ image_url($panel->image) }}" alt="@if($panel->title){{ $panel->title }}@endif" loading="lazy">
         </div>
-        <div class="media-panel__body">
+        <div class="media-panel__body" data-reveal>
             <h2>{{ $panel->title ?? setting('clinic_name') }}</h2>
             <div class="prose">{!! nl2br(e($panel->message)) !!}</div>
             @if($panel->button_text && $panel->button_url)
@@ -56,10 +61,10 @@
 @if($testimonials->isNotEmpty())
 <section class="section testimonials" aria-label="Patient feedback">
     <div class="container narrow">
-        <div class="section-head section-head--center">
+        <div class="section-head section-head--center" data-reveal>
             <h2>What our patients say</h2>
         </div>
-        <div data-react-root="testimonials" data-testimonials="{{ $testimonials->map(fn ($t) => [
+        <div data-reveal data-react-root="testimonials" data-testimonials="{{ $testimonials->map(fn ($t) => [
             'content' => $t->content,
             'name' => $t->name,
             'context' => $t->context,
@@ -69,7 +74,7 @@
 @endif
 
 <section class="booking-strip" id="book">
-    <div class="container booking-strip__inner">
+    <div class="container booking-strip__inner" data-reveal>
         <div>
             <h2>{{ $bookingStrip['heading'] ?? 'Ready to see a doctor?' }}</h2>
             <p>{{ $bookingStrip['text'] ?? '' }}</p>
