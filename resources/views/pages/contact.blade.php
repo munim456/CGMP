@@ -20,30 +20,53 @@
 
         <div class="inner-main">
 
-            <div class="textboxsideimage">
-                <div data-reveal>
-                    <ul class="text-list">
-                        <li>For all general enquiries, please call
-                            <a href="tel:{{ tel_url(setting('phone')) }}" class="text-link">{{ setting('phone') }}</a>
-                            during opening hours.</li>
-                        <li>You can find us at {{ setting('address_line1') }}, {{ setting('address_suburb') }}.</li>
-                        @if(setting('fax'))<li>Fax: {{ setting('fax') }}</li>@endif
-                        <li>To book an appointment, use the <strong>Book online</strong> button at the top of this page.</li>
-                    </ul>
-                </div>
-                <div class="textboxsideimage-imagecol" data-reveal>
+            <div class="textboxsideimage-imagecol" data-reveal>
+                <div class="contact-photo-frame">
                     <img src="{{ image_url('media/placeholders/contact-side.jpg') }}"
                          alt="Reception team member assisting a patient at {{ setting('clinic_name') }}" width="640" height="427"
                          loading="lazy">
                 </div>
             </div>
 
-            <div class="contact-emergency" role="note">
+            <div class="contact-methods">
+                <div class="contact-method-card" data-reveal>
+                    <span class="contact-method-card__icon"><x-icon name="phone" class="w-5 h-5"/></span>
+                    <h3>Call us</h3>
+                    <p>For all general enquiries during opening hours.</p>
+                    <a href="tel:{{ tel_url(setting('phone')) }}">{{ setting('phone') }}</a>
+                </div>
+                <div class="contact-method-card" data-reveal>
+                    <span class="contact-method-card__icon"><x-icon name="map-pin" class="w-5 h-5"/></span>
+                    <h3>Visit us</h3>
+                    <p>{{ setting('address_line1') }}<br>{{ setting('address_suburb') }}</p>
+                    @if(setting('fax'))<p>Fax: {{ setting('fax') }}</p>@endif
+                </div>
+                <div class="contact-method-card" data-reveal>
+                    <span class="contact-method-card__icon"><x-icon name="calendar-check" class="w-5 h-5"/></span>
+                    <h3>Book online</h3>
+                    <p>Use the Book online button at the top of this page.</p>
+                    <a href="{{ route('booking') }}">Book an appointment</a>
+                </div>
+            </div>
+
+            <div class="quick-facts-card" data-reveal>
+                <span class="quick-facts-card__icon"><x-icon name="clock" class="w-6 h-6"/></span>
+                <div>
+                    <h2>Opening hours</h2>
+                    <div class="quick-facts-card__hours">
+                        @foreach(preg_split('/\r\n|\r|\n/', trim(setting('opening_hours'))) as $line)
+                            @if(trim($line) !== '')<span>{{ trim($line) }}</span>@endif
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-emergency" role="note" data-reveal>
                 <x-icon name="alert-triangle" class="w-5 h-5 icon"/>
                 <span><strong>In a medical emergency, call 000 immediately.</strong> This form must not be used for urgent medical issues.</span>
             </div>
 
-            <div class="contact-form-wrap" id="feedback-form">
+            <div class="contact-form-wrap" id="feedback-form" data-reveal>
                 <h2>Feedback Form</h2>
 
                 @if(session('status'))
@@ -90,7 +113,7 @@
                 </form>
             </div>
 
-            <div class="acknowledgement">
+            <div class="acknowledgement" data-reveal>
                 <div class="acknowledgement__flags">
                     <img src="{{ image_url('media/placeholders/flag-aboriginal.png') }}" alt="Australian Aboriginal Flag" width="90" height="54" loading="lazy">
                     <img src="{{ image_url('media/placeholders/flag-torres-strait.png') }}" alt="Torres Strait Islander Flag" width="90" height="54" loading="lazy">
