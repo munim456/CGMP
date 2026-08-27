@@ -41,7 +41,6 @@
             <ul>
                 <li><a href="{{ route('booking') }}" class="nav-book-pill @if(request()->routeIs('booking')) is-active @endif" @if(request()->routeIs('booking')) aria-current="page" @endif><x-icon name="calendar-check" class="w-5 h-5"/> Book Online</a></li>
                 <li><a href="{{ route('doctors') }}" class="@if(request()->routeIs('doctors')) is-active @endif" @if(request()->routeIs('doctors')) aria-current="page" @endif>Our Doctors</a></li>
-                <li><a href="{{ route('fees') }}" class="@if(request()->routeIs('fees')) is-active @endif" @if(request()->routeIs('fees')) aria-current="page" @endif>Fees &amp; Information</a></li>
                 <li><a href="{{ route('services.index') }}" class="@if(request()->routeIs('services.*')) is-active @endif" @if(request()->routeIs('services.*')) aria-current="page" @endif>Our Services</a></li>
                 <li><a href="{{ route('about') }}" class="@if(request()->routeIs('about')) is-active @endif" @if(request()->routeIs('about')) aria-current="page" @endif>About Us</a></li>
                 <li><a href="{{ route('contact') }}" class="@if(request()->routeIs('contact')) is-active @endif" @if(request()->routeIs('contact')) aria-current="page" @endif>Contact Us</a></li>
@@ -121,7 +120,6 @@
                 <li><a href="{{ route('about') }}">About the practice</a></li>
                 <li><a href="{{ route('services.index') }}">Our services</a></li>
                 <li><a href="{{ route('doctors') }}">Our doctors</a></li>
-                <li><a href="{{ route('fees') }}">Fees &amp; information</a></li>
                 <li><a href="{{ route('blog.index') }}">Health blog</a></li>
                 <li><a href="{{ route('booking') }}">Book an appointment</a></li>
                 <li><a href="{{ route('contact') }}">Contact us</a></li>
