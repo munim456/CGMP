@@ -61,6 +61,8 @@
                     <span class="nav-badge nav-badge--alert">{{ $unreadCount }}</span>@endif</a>
             <a href="{{ route('admin.media.index') }}" class="{{ request()->routeIs('media.*') ? 'is-active' : '' }}">
                 <x-icon name="image"> </x-icon> Media library</a>
+            <a href="{{ route('admin.redirects.index') }}" class="{{ request()->routeIs('redirects.*') ? 'is-active' : '' }}">
+                <x-icon name="link"/> Redirects</a>
             <a href="{{ route('admin.settings.edit') }}" class="{{ request()->routeIs('settings.*') ? 'is-active' : '' }}">
                 <x-icon name="settings"/> Site settings</a>
             <a href="{{ route('admin.profile.edit') }}" class="{{ request()->routeIs('profile.*') ? 'is-active' : '' }}">

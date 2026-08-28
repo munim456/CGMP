@@ -70,6 +70,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('pages', Admin\PageController::class)->only(['index', 'edit', 'update']);
         Route::resource('messages', Admin\MessageController::class)->only(['index', 'show', 'destroy']);
         Route::resource('media', Admin\MediaController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('redirects', Admin\RedirectController::class)->only(['index', 'store', 'update', 'destroy']);
 
         Route::get('sections/{key}/edit', [Admin\SectionController::class, 'edit'])->name('sections.edit');
         Route::put('sections/{key}', [Admin\SectionController::class, 'update'])->name('sections.update');
