@@ -65,6 +65,25 @@
 .highlight-card h3 { font-size: 1.12rem; margin-bottom: .4rem; }
 .highlight-card p { color: var(--muted); font-size: .92rem; margin: 0; }
 
+/* ============ Highlights strip (homepage) ============ */
+.hl-strip { display: flex; flex-wrap: wrap; }
+.hl-strip__item {
+    flex: 1 1 200px; text-align: center; padding: .5rem 1.75rem;
+    border-left: 1px solid var(--border);
+}
+.hl-strip__item:first-child { border-left: none; }
+.hl-strip__icon {
+    display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+    background: var(--primary-tint); color: var(--primary); margin-bottom: 1rem;
+}
+.hl-strip__item h3 { font-size: 1rem; margin-bottom: .35rem; }
+.hl-strip__item p { color: var(--muted); font-size: .88rem; line-height: 1.5; margin: 0; }
+
+@media (max-width: 720px) {
+    .hl-strip__item { flex: 1 1 100%; border-left: none; border-top: 1px solid var(--border); padding: 1.5rem 1rem; }
+    .hl-strip__item:first-child { border-top: none; }
+}
+
 .post-card {
     background: #fff; border-radius: var(--radius); overflow: hidden;
     box-shadow: var(--shadow-sm); border: 1px solid var(--border); border-top: 3px solid var(--primary);
@@ -144,6 +163,12 @@
 .doctor-card__quals { color: var(--muted); font-size: .84rem; margin: 0; }
 .doctor-card--row { display: flex; text-align: left; gap: 1.5rem; align-items: flex-start; }
 .doctor-card--row .doctor-card__photo { margin: 0; width: 108px; height: 108px; flex-shrink: 0; }
+.doctor-card--compact { padding: 1.1rem 1.35rem; gap: 1rem; align-items: center; }
+.doctor-card--compact .doctor-card__photo { width: 64px; height: 64px; border-width: 3px; }
+.doctor-card--compact .avatar-initials { font-size: 1.3rem; }
+.doctor-card--compact h3 { font-size: 1rem; }
+.doctor-card--compact .doctor-card__role { font-size: .82rem; margin-bottom: .15rem; }
+.doctor-card--compact .doctor-card__quals { font-size: .78rem; }
 .prose--sm p { font-size: .92rem; color: var(--text); }
 
 .service-card {
@@ -936,6 +961,8 @@ html.js [data-reveal].is-visible { opacity: 1; transform: none; }
 }
 .doctor-table__photo img { width: 100%; height: 100%; object-fit: cover; }
 .doctor-table__photo .avatar-initials { font-size: 1.15rem; }
+.doctor-table__photo--sm { width: 48px; height: 48px; border-width: 2px; }
+.doctor-table__photo--sm .avatar-initials { font-size: .9rem; }
 .doctor-table__link { color: var(--primary-dark); font-weight: 700; font-size: 1rem; }
 .doctor-table__link:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 .doctor-table__quals { margin: .1rem 0 0; color: var(--muted); font-size: .82rem; }
@@ -959,6 +986,63 @@ html.js [data-reveal].is-visible { opacity: 1; transform: none; }
         text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin-bottom: .2rem;
     }
     .doctor-table td[data-label="Bookings"] { margin-top: .5rem; }
+}
+
+/* ============ Doctor spotlight (homepage) ============ */
+.dr-spotlight { max-width: 720px; margin: 0 auto; }
+.dr-spotlight__profile {
+    display: grid; grid-template-columns: minmax(150px, 200px) 1fr;
+    gap: 1.75rem; align-items: center; margin-bottom: 1.75rem;
+}
+.dr-spotlight.is-enhanced .dr-spotlight__profile { display: none; margin-bottom: 0; }
+.dr-spotlight.is-enhanced .dr-spotlight__profile.is-active { display: grid; }
+
+.dr-spotlight__frame { position: relative; }
+.dr-spotlight__frame::before {
+    content: ''; position: absolute; inset: 10px -10px -10px 10px;
+    background: var(--gradient-primary); border-radius: var(--radius); z-index: 0;
+}
+.dr-spotlight__photo {
+    position: relative; z-index: 1; aspect-ratio: 4 / 5;
+    border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+    background: var(--gradient-primary); display: grid; place-items: center;
+}
+.dr-spotlight__photo img { width: 100%; height: 100%; object-fit: cover; }
+.dr-spotlight__photo .avatar-initials { font-size: 2rem; }
+
+.dr-spotlight__info h3 { font-size: 1.2rem; margin-bottom: .15rem; }
+.dr-spotlight__role { color: var(--primary-dark); font-weight: 600; font-size: .9rem; margin-bottom: .1rem; }
+.dr-spotlight__quals { color: var(--muted); font-size: .82rem; margin: 0 0 .65rem; }
+.dr-spotlight__tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .7rem; }
+.dr-spotlight__bio { color: var(--text); font-size: .9rem; line-height: 1.55; max-width: 46ch; margin: 0 0 .9rem; }
+
+.dr-spotlight__switcher { display: none; }
+.dr-spotlight.is-enhanced .dr-spotlight__switcher {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin-top: 1.75rem;
+}
+.dr-spotlight__tab {
+    display: flex; align-items: center; gap: .5rem; text-align: left;
+    padding: .35rem .9rem .35rem .35rem; border-radius: 999px; border: 1px solid var(--border);
+    background: #fff; cursor: pointer; transition: var(--transition); font: inherit;
+}
+.dr-spotlight__tab:hover { border-color: var(--primary-tint-2); box-shadow: var(--shadow-sm); }
+.dr-spotlight__tab.is-active { border-color: var(--primary); background: var(--primary-tint); box-shadow: var(--glow-primary); }
+.dr-spotlight__tab-photo {
+    width: 32px; height: 32px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+    background: var(--gradient-primary); display: grid; place-items: center;
+}
+.dr-spotlight__tab-photo img { width: 100%; height: 100%; object-fit: cover; }
+.dr-spotlight__tab-photo .avatar-initials { font-size: .68rem; }
+.dr-spotlight__tab-text { display: flex; flex-direction: column; line-height: 1.25; }
+.dr-spotlight__tab-text strong { font-size: .82rem; }
+.dr-spotlight__tab-text small { color: var(--muted); font-size: .7rem; }
+
+@media (max-width: 720px) {
+    .dr-spotlight__profile { grid-template-columns: 1fr; gap: 1.1rem; text-align: center; }
+    .dr-spotlight__frame { max-width: 180px; margin: 0 auto; }
+    .dr-spotlight__frame::before { inset: 8px -8px -8px 8px; }
+    .dr-spotlight__tags { justify-content: center; }
+    .dr-spotlight__bio { margin-left: auto; margin-right: auto; text-align: left; }
 }
 
 /* ======== Homepage polish ======== */

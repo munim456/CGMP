@@ -191,3 +191,29 @@ if (doctorDirectory) {
 
     applySort();
 }
+
+/* ---------- Homepage doctor spotlight switcher ---------- */
+const drSpotlight = document.querySelector('[data-doctor-spotlight]');
+if (drSpotlight) {
+    const tabs = [...drSpotlight.querySelectorAll('[data-doctor-tab]')];
+
+    if (tabs.length) {
+        drSpotlight.classList.add('is-enhanced');
+
+        tabs.forEach((tab) => {
+            tab.addEventListener('click', () => {
+                const id = tab.dataset.doctorTab;
+
+                tabs.forEach((t) => {
+                    const active = t === tab;
+                    t.classList.toggle('is-active', active);
+                    t.setAttribute('aria-selected', String(active));
+                });
+
+                drSpotlight.querySelectorAll('[data-doctor-panel]').forEach((panel) => {
+                    panel.classList.toggle('is-active', panel.dataset.doctorPanel === id);
+                });
+            });
+        });
+    }
+}
