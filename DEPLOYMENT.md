@@ -117,6 +117,34 @@ RewriteRule ^storage/(.*)$ apps/cgmp/storage/app/public/$1 [L]
 - [ ] Book button opens HealthEngine
 - [ ] `APP_DEBUG=false` in `.env`; visit a bad URL → styled 404, not stack trace
 - [ ] Run Lighthouse on mobile (target 85+ accessibility/perf)
+- [ ] Cron entry added (below) so scheduled blog posts publish and nightly backups actually run
+
+## Scheduled tasks (cron)
+
+The app relies on Laravel's scheduler for two things: publishing blog posts at their
+scheduled time (`posts:publish-scheduled`) and a nightly database backup (`backup:run`,
+see below). Neither runs on its own — hPanel → **Advanced → Cron Jobs** needs one entry
+that fires every minute and lets Laravel decide what's actually due:
+
+```bash
+* * * * * cd ~/apps/cgmp && php artisan schedule:run >> /dev/null 2>&1
+```
+
+(Adjust the path if you deployed elsewhere. If hPanel's PHP CLI binary differs from the
+web one, use the full path shown in hPanel → PHP Configuration, e.g. `/usr/bin/php8.2`.)
+
+### Database backups
+
+`php artisan backup:run` writes a timestamped, gzip-compressed SQL dump to
+`storage/app/backups/` (outside the web root — not publicly reachable) and keeps the 14
+most recent by default (`--keep=N` to change). It runs nightly at 03:00 via the cron
+entry above. Since Hostinger shared hosting doesn't reliably offer `ext-zip`/`ext-pcntl`
+or shell access to `mysqldump`, the command dumps through Laravel's own DB connection —
+no extra PHP extensions or binaries required.
+
+Periodically download `storage/app/backups/*.sql.gz` off-server (e.g. via SFTP) — local
+disk backups protect against bad migrations or accidental deletes, not against losing the
+whole server. To restore one: `gunzip -c backup-*.sql.gz | mysql -u USER -p DBNAME`.
 
 ## Troubleshooting
 

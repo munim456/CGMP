@@ -26,3 +26,4 @@ RESUME.md
 /dist
 /.opencode
 /database/database.sqlite
+/storage/app/backups
