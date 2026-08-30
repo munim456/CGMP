@@ -355,4 +355,6 @@ code { background: var(--a-tint); padding: .1em .4em; border-radius: 6px; }
     .admin-burger { display: inline-flex; }
     .upload-row { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
+    .admin-search { flex-wrap: wrap; max-width: none; }
+    .admin-search input, .admin-search select { max-width: none; flex: 1 1 45%; }
 }
