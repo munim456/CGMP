@@ -617,6 +617,8 @@ html.js [data-reveal].is-visible { opacity: 1; transform: none; }
     .doctor-card--row .doctor-card__photo { margin-bottom: 1rem; }
     .slider-btn--prev { left: -4px; }
     .slider-btn--next { right: -4px; }
+    .notice__inner p { flex-wrap: wrap; row-gap: .2rem; }
+    .notice__inner p strong { white-space: nowrap; }
 }
 
 @media (max-width: 620px) {

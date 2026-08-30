@@ -75,7 +75,7 @@
     --bg-alt: #f6faf7;
 }
 
-*, *::before, *::after { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
 html { font-size: 16px; scroll-behavior: smooth; }
 html.a11y-step-1 { font-size: 17.5px; }
