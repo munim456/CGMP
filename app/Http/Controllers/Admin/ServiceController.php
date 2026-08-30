@@ -89,7 +89,7 @@ class ServiceController extends Controller
             $data['image'] = MediaUploader::handle($request->file('image'), 'media/services')['path'];
         }
 
-        $service->update($data);
+        $service->fill($data)->save();
     }
 
     protected function uniqueSlug(string $source, ?int $ignoreId = null): string

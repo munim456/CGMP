@@ -88,6 +88,6 @@ class DoctorController extends Controller
             $data['photo'] = MediaUploader::handle($request->file('photo'), 'media/doctors')['path'];
         }
 
-        $doctor->update($data);
+        $doctor->fill($data)->save();
     }
 }
