@@ -695,6 +695,17 @@ html.js [data-reveal].is-visible { opacity: 1; transform: none; }
     .media-panel--rev .media-panel__img { order: 0; }
 }
 
+/* Phones: keep the hero photo visible instead of letting the info card cover it,
+   and shrink the card itself so the clinic details read as a compact panel. */
+@media (max-width: 560px) {
+    .hero-photo { min-height: 360px; }
+    .hero-card { max-width: min(320px, 84%); padding: 1.1rem 1.25rem; }
+    .hero-card h1 { font-size: 1.2rem; margin-bottom: .35rem; }
+    .hero-card__label { font-size: .8rem; margin: .65rem 0 .15rem; }
+    .hero-card p { font-size: .84rem; line-height: 1.35; margin-bottom: .1rem; }
+    .hero-card__book { margin-top: .8rem; padding: .7rem 1.25rem; font-size: .88rem; }
+}
+
 /* ======== Page intro / listing cards (Our Services) ======== */
 .intro-card {
     background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg);
