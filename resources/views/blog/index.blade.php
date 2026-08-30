@@ -38,11 +38,46 @@
                 @if(request()->filled('category')) in {{ $categories->firstWhere('slug', request('category'))?->name }} @endif
                 @if(request()->filled('q')) matching &ldquo;{{ request('q') }}&rdquo; @endif
             </p>
-            <div class="grid grid--3 post-grid blog-post-grid">
-                @foreach($posts as $blogPost)
-                    @include('partials.post-card', ['post' => $blogPost])
-                @endforeach
-            </div>
+
+            @php
+                $showFeatured = $posts->currentPage() === 1 && ! request()->filled('q') && ! request()->filled('category');
+                $featuredPost = $showFeatured ? $posts->first() : null;
+                $restOfPosts = $featuredPost ? $posts->skip(1) : $posts;
+            @endphp
+
+            @if($featuredPost)
+                <a href="{{ route('blog.show', $featuredPost) }}" class="featured-post" data-reveal>
+                    <div class="featured-post__media">
+                        @if($featuredPost->featured_image)
+                            <img src="{{ image_url($featuredPost->featured_image) }}" alt="{{ $featuredPost->featured_image_alt ?: $featuredPost->title }}">
+                        @else
+                            <span class="featured-post__placeholder"><x-icon name="newspaper" class="w-12 h-12"/></span>
+                        @endif
+                    </div>
+                    <div class="featured-post__body">
+                        <span class="chip chip--accent featured-post__badge">Latest article</span>
+                        <h2 class="featured-post__title">{{ $featuredPost->title }}</h2>
+                        @if($featuredPost->excerpt)
+                            <p class="featured-post__excerpt">{{ $featuredPost->excerpt }}</p>
+                        @endif
+                        <div class="featured-post__meta">
+                            @if($featuredPost->category)
+                                <span class="chip chip--soft">{{ $featuredPost->category->name }}</span>
+                            @endif
+                            <time datetime="{{ $featuredPost->published_at->toDateString() }}">{{ $featuredPost->published_at->format('j M Y') }}</time>
+                        </div>
+                        <span class="read-more">Read article <x-icon name="arrow-right" class="w-4 h-4"/></span>
+                    </div>
+                </a>
+            @endif
+
+            @if($restOfPosts->isNotEmpty())
+                <div class="grid grid--3 post-grid blog-post-grid">
+                    @foreach($restOfPosts as $blogPost)
+                        @include('partials.post-card', ['post' => $blogPost])
+                    @endforeach
+                </div>
+            @endif
             <div class="pagination-wrap">{{ $posts->links() }}</div>
         @else
             <div class="empty-state" data-reveal>
