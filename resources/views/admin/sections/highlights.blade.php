@@ -17,7 +17,7 @@
                             <label>Icon</label>
                             <select name="items[{{ $i }}][icon]">
                                 @foreach(['stethoscope','heart-pulse','activity','shield-check','briefcase-medical','user-round','clock','calendar-check'] as $iconName)
-                                    <option value="{{ $iconName }}" @selected(($item['icon'] ?? '') === $iconName)>@ucfirst(str_replace('-', ' ', $iconName))</option>
+                                    <option value="{{ $iconName }}" @selected(($item['icon'] ?? '') === $iconName)>{{ ucfirst(str_replace('-', ' ', $iconName)) }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -42,7 +42,7 @@
                         <label>Icon</label>
                         <select name="items[__IDX__][icon]">
                             @foreach(['stethoscope','heart-pulse','activity','shield-check','briefcase-medical','user-round','clock','calendar-check'] as $iconName)
-                                <option value="{{ $iconName }}">@ucfirst(str_replace('-', ' ', $iconName))</option>
+                                <option value="{{ $iconName }}">{{ ucfirst(str_replace('-', ' ', $iconName)) }}</option>
                             @endforeach
                         </select>
                     </div>

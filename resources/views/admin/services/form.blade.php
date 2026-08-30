@@ -49,7 +49,7 @@
             <div class="field">
                 <select name="icon" id="icon">
                     @foreach(['stethoscope','heart-pulse','brain','baby','flower','dumbbell','activity','shield-check','briefcase-medical','user-round','clock'] as $iconName)
-                        <option value="{{ $iconName }}" @selected(old('icon', $service->icon) === $iconName)>@ucfirst(str_replace('-', ' ', $iconName))</option>
+                        <option value="{{ $iconName }}" @selected(old('icon', $service->icon) === $iconName)>{{ ucfirst(str_replace('-', ' ', $iconName)) }}</option>
                     @endforeach
                 </select>
             </div>
