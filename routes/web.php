@@ -64,6 +64,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('tags', Admin\TagController::class)->except('show');
 
         Route::resource('services', Admin\ServiceController::class)->except('show');
+        Route::resource('service-directory', Admin\ServiceDirectoryItemController::class)->except('show');
         Route::resource('doctors', Admin\DoctorController::class)->except('show');
         Route::resource('testimonials', Admin\TestimonialController::class)->except('show');
         Route::resource('announcements', Admin\AnnouncementController::class)->except('show');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use App\Models\Service;
+use App\Models\ServiceDirectoryItem;
 use Illuminate\Contracts\View\View;
 
 class ServiceController extends Controller
@@ -12,6 +13,7 @@ class ServiceController extends Controller
     {
         return view('services.index', [
             'services' => Service::query()->active()->get(),
+            'serviceDirectory' => ServiceDirectoryItem::query()->active()->get(),
         ]);
     }
 
