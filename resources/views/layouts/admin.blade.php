@@ -87,7 +87,6 @@
             </button>
             <h1 class="admin-topbar__title">@yield('page-title', 'Dashboard')</h1>
             <div class="admin-topbar__right">
-                <a href="{{ route('admin.posts.create') }}" class="btn btn--primary btn--sm"><x-icon name="plus" class="w-4 h-4"/> New post</a>
                 <span class="admin-user">{{ auth()->user()?->name }}</span>
             </div>
         </header>
