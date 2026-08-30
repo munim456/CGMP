@@ -717,13 +717,20 @@ html.js [data-reveal].is-visible { opacity: 1; transform: none; }
     max-width: min(430px, 100%); margin-left: auto;
     animation: heroFadeUp .7s var(--ease) both;
 }
-.hero-card h1 { font-size: clamp(1.5rem, 3vw, 2.05rem); line-height: 1.2; margin-bottom: .5rem; animation: heroFadeUp .6s var(--ease) .12s both; }
+.hero-card h1 {
+    font-family: var(--font-editorial); font-weight: 700;
+    font-size: clamp(1.6rem, 3.2vw, 2.25rem); line-height: 1.22; margin-bottom: .5rem;
+    animation: heroFadeUp .6s var(--ease) .12s both;
+}
 @keyframes heroFadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
-.hero-card__label { font-weight: 700; font-size: 1rem; color: var(--ink); margin: 1.15rem 0 .25rem; }
+.hero-card__label {
+    font-weight: 600; font-size: .76rem; text-transform: uppercase; letter-spacing: .07em;
+    color: var(--accent-dark); margin: 1.15rem 0 .35rem;
+}
 .hero-card p { margin: 0 0 .25rem; font-size: .98rem; line-height: 1.55; }
 .hero-card p a { color: var(--primary); text-decoration: underline; text-underline-offset: 3px; }
 .hero-card p a:hover { color: var(--primary-dark); }
-.hero-card__hours { color: var(--text); }
+.hero-card__hours { color: var(--text); font-family: var(--font-editorial); font-style: italic; }
 .hero-card__book { margin-top: 1.35rem; width: 100%; justify-content: center; animation: heroFadeUp .6s var(--ease) .3s both; }
 
 .intro-block {
