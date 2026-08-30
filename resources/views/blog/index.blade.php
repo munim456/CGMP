@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
 @section('content')
-<section class="page-hero">
+<section class="page-hero page-hero--editorial">
     <div class="container" data-reveal>
         <h1>Health blog</h1>
         <p class="page-hero__sub">Articles and updates from the team at {{ setting('clinic_name') }}.</p>
