@@ -39,8 +39,8 @@
                 @if(request()->filled('q')) matching &ldquo;{{ request('q') }}&rdquo; @endif
             </p>
             <div class="grid grid--3 post-grid blog-post-grid">
-                @foreach($posts as $post)
-                    @include('partials.post-card', ['post' => $post])
+                @foreach($posts as $blogPost)
+                    @include('partials.post-card', ['post' => $blogPost])
                 @endforeach
             </div>
             <div class="pagination-wrap">{{ $posts->links() }}</div>

@@ -38,8 +38,8 @@
             <a href="{{ route('blog.index') }}" class="read-more">View all articles <x-icon name="arrow-right" class="w-4 h-4"/></a>
         </div>
         <div class="grid grid--3 post-grid post-grid--compact">
-            @foreach($latestPosts as $post)
-                @include('partials.post-card', ['post' => $post, 'compact' => true])
+            @foreach($latestPosts as $latestPost)
+                @include('partials.post-card', ['post' => $latestPost, 'compact' => true])
             @endforeach
         </div>
     </div>
