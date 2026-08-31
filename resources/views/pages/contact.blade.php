@@ -8,7 +8,7 @@
 
             <nav class="side-menu" aria-label="Contact section">
                 <a href="{{ route('contact') }}" class="side-menu__link is-header is-active">Contact us</a>
-                <a href="{{ route('booking') }}" class="side-menu__link">Book an appointment</a>
+                <a href="{{ route('contact.professionals') }}" class="side-menu__link">Information for healthcare professionals</a>
             </nav>
 
             <div class="inner-main ipn-contact">

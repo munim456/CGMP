@@ -17,6 +17,11 @@ class ContactController extends Controller
         return view('pages.contact');
     }
 
+    public function professionals(): View
+    {
+        return view('pages.contact-professionals');
+    }
+
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([

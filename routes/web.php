@@ -34,6 +34,8 @@ Route::get('/contact', [ContactController::class, 'show'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])
     ->middleware('throttle:contact-form')
     ->name('contact.store');
+Route::get('/information-for-healthcare-professionals', [ContactController::class, 'professionals'])
+    ->name('contact.professionals');
 
 Route::get('/privacy-policy', PageController::class)->defaults('static_slug', 'privacy-policy')->name('pages.privacy');
 Route::get('/terms-of-use', PageController::class)->defaults('static_slug', 'terms-of-use')->name('pages.terms');
