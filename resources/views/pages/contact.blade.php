@@ -14,7 +14,7 @@
 <section class="section">
     <div class="container">
 
-        <div class="inner-main">
+        <div class="inner-main ipn-contact">
 
             <div class="intro-card" data-reveal>
                 <h1>Contact us</h1>

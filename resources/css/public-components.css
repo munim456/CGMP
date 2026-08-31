@@ -576,6 +576,50 @@ body.compact-page .stats-row { margin-top: 1.75rem; }
     font-size: .95rem; line-height: 1.75; color: var(--text);
 }
 
+/* ======== Contact page: matched to the IPN reference page's own
+   typography, corner radius, shadow depth and form field styling
+   (fonts/colors/spacing pulled from its computed styles) ======== */
+.ipn-contact { font-family: 'Work Sans', var(--font-body); }
+.ipn-contact .intro-card,
+.ipn-contact .contact-form-wrap,
+.ipn-contact .acknowledgement {
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 31, 65, .1);
+    padding: 24px;
+    max-width: none;
+    background: #fff;
+}
+.ipn-contact .contact-photo-frame { border-radius: 4px; box-shadow: 0 1px 1px rgba(0, 31, 65, .1); }
+.ipn-contact .intro-card h1,
+.ipn-contact .contact-form-wrap h2,
+.ipn-contact .acknowledgement h2 {
+    font-family: 'Work Sans', var(--font-body);
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: -.02em;
+}
+.ipn-contact .intro-card p,
+.ipn-contact .contact-form-wrap p,
+.ipn-contact .acknowledgement p { color: #474747; }
+.ipn-contact .tick-list a,
+.ipn-contact a.text-link {
+    color: var(--primary); font-weight: 500; text-decoration: none;
+}
+.ipn-contact .tick-list a:hover,
+.ipn-contact a.text-link:hover { text-decoration: underline; }
+.ipn-contact .field label { font-family: 'Work Sans', var(--font-body); font-weight: 500; color: #474747; }
+.ipn-contact .field input,
+.ipn-contact .field textarea {
+    font-family: 'Work Sans', var(--font-body);
+    border: 1px solid #d8dce9; border-radius: 4px;
+    padding: .5rem 1rem; min-height: 2.75rem; background: #fff;
+}
+.ipn-contact .contact-form-wrap .btn--accent {
+    border-radius: 9999px; background: var(--primary);
+    padding: .6rem 1.75rem; font-weight: 500; box-shadow: none;
+}
+.ipn-contact .contact-form-wrap .btn--accent:hover { background: var(--primary-dark); box-shadow: none; }
+
 @media (max-width: 900px) {
     .inner-layout { grid-template-columns: 1fr; gap: 2rem; }
     .textboxsideimage { grid-template-columns: 1fr; }
