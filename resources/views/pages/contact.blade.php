@@ -110,12 +110,4 @@
     </div>
 </section>
 
-@if(setting('google_map_embed'))
-<section class="section section--flush" aria-label="Location map">
-    <iframe class="contact-map" loading="lazy"
-        src="{{ setting('google_map_embed') }}"
-        title="Map showing {{ setting('clinic_name') }} location"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
-</section>
-@endif
 @endsection
