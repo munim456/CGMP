@@ -24,8 +24,8 @@
                         <p style="margin-top:1rem">Please do not send patient health information via the website contact form.</p>
                     </div>
                     <div class="textboxsideimage-imagecol">
-                        <img src="{{ image_url('media/placeholders/contact-side.jpg') }}"
-                             alt="Reception team member assisting a patient at {{ setting('clinic_name') }}" width="640" height="427"
+                        <img src="{{ image_url('media/placeholders/contact-phone.jpg') }}"
+                             alt="Clinician answering the phone at {{ setting('clinic_name') }}" width="640" height="427"
                              loading="lazy">
                     </div>
                 </div>
