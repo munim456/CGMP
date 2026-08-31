@@ -1,41 +1,45 @@
 @extends('layouts.public')
 
 @section('content')
-<section class="section section--flush">
-    <div class="container" data-reveal>
-        <div class="contact-photo-frame">
-            <img src="{{ image_url('media/placeholders/contact-side.jpg') }}"
-                 alt="Reception team member assisting a patient at {{ setting('clinic_name') }}" width="1920" height="880"
-                 loading="lazy">
-        </div>
-    </div>
-</section>
-
 <section class="section">
     <div class="container">
 
-        <div class="inner-main ipn-contact">
+        <div class="inner-layout">
 
-            <div class="intro-card" data-reveal>
-                <h1>Contact us</h1>
-                <p>Please phone {{ setting('clinic_name') }} for information regarding appointments, test results or doctor
-                    communication. To protect your privacy, we ask that patients avoid sending personal health details by email.</p>
-                <p style="margin-top:1rem">We continually strive to improve our services to you. If you have a comment or
-                    complaint, please:</p>
-                <ul class="tick-list">
-                    <li><x-icon name="phone" class="w-4 h-4"/> Speak with our practice manager on
-                        <a class="text-link" href="tel:{{ tel_url(setting('phone')) }}">{{ setting('phone') }}</a></li>
-                    <li><x-icon name="message-square" class="w-4 h-4"/> Give your comments via the online form below</li>
-                </ul>
-                <p style="margin-top:1rem">We will endeavour to respond to your feedback within 2 working days.</p>
-            </div>
+            <nav class="side-menu" aria-label="Contact section">
+                <a href="{{ route('contact') }}" class="side-menu__link is-header is-active">Contact us</a>
+                <a href="{{ route('booking') }}" class="side-menu__link">Book an appointment</a>
+            </nav>
 
-            <div class="contact-emergency" role="note" data-reveal>
-                <x-icon name="alert-triangle" class="w-5 h-5 icon"/>
-                <span><strong>In a medical emergency, call 000 immediately.</strong> This form must not be used for urgent medical issues.</span>
-            </div>
+            <div class="inner-main ipn-contact">
 
-            <div class="contact-form-wrap" id="feedback-form" data-reveal>
+                <div class="textboxsideimage" data-reveal>
+                    <div class="textboxsideimage-content">
+                        <h1>Contact us</h1>
+                        <p>Please phone {{ setting('clinic_name') }} for information regarding appointments, test results or doctor
+                            communication. To protect your privacy, we ask that patients avoid sending personal health details by email.</p>
+                        <p style="margin-top:1rem">We continually strive to improve our services to you. If you have a comment or
+                            complaint, please:</p>
+                        <ul class="tick-list">
+                            <li><x-icon name="phone" class="w-4 h-4"/> <span>Speak with our practice manager on
+                                <a class="text-link" href="tel:{{ tel_url(setting('phone')) }}">{{ setting('phone') }}</a></span></li>
+                            <li><x-icon name="message-square" class="w-4 h-4"/> <span>Give your comments via the online form below</span></li>
+                        </ul>
+                        <p style="margin-top:1rem">We will endeavour to respond to your feedback within 2 working days.</p>
+                    </div>
+                    <div class="textboxsideimage-imagecol">
+                        <img src="{{ image_url('media/placeholders/contact-side.jpg') }}"
+                             alt="Reception team member assisting a patient at {{ setting('clinic_name') }}" width="640" height="427"
+                             loading="lazy">
+                    </div>
+                </div>
+
+                <div class="contact-emergency" role="note" data-reveal>
+                    <x-icon name="alert-triangle" class="w-5 h-5 icon"/>
+                    <span><strong>In a medical emergency, call 000 immediately.</strong> This form must not be used for urgent medical issues.</span>
+                </div>
+
+                <div class="contact-form-wrap" id="feedback-form" data-reveal>
                 <h2>Feedback form</h2>
 
                 @if(session('status'))
@@ -103,6 +107,7 @@
                     We pay our respect to Elders past, present and emerging.</p>
             </div>
 
+            </div>
         </div>
     </div>
 </section>

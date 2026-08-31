@@ -494,16 +494,16 @@ body.compact-page .stats-row { margin-top: 1.75rem; }
 
 /* ======== Inner page layout (IPN style) ======== */
 .inner-layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 2.75rem; align-items: start; }
-.side-menu { background: #fff; border: 1px solid #e5e9f2; border-radius: 8px; overflow: hidden; }
+.side-menu { display: flex; flex-direction: column; gap: 2px; }
 .side-menu__link {
     display: block; padding: .85rem 1.15rem;
-    color: var(--text); font-weight: 500; text-decoration: none;
-    transition: background .15s ease, color .15s ease;
+    background: var(--primary); color: #fff; font-weight: 500; text-decoration: none;
+    transition: background .15s ease;
 }
-.side-menu__link + .side-menu__link { border-top: 1px solid #f3f5f9; }
-.side-menu__link:hover { background: var(--bg-alt); color: var(--primary); }
-.side-menu__link.is-header { font-weight: 600; color: var(--primary); font-size: 1rem; }
-.side-menu__link.is-active { background: var(--bg-alt); }
+.side-menu__link:hover { background: var(--primary-dark); }
+.side-menu__link.is-header { font-weight: 600; }
+.side-menu__link.is-active { background: var(--accent); }
+.side-menu__link.is-active:hover { background: var(--accent-dark); }
 
 .inner-main h1 { font-size: clamp(1.7rem, 3vw, 2.35rem); margin-bottom: 1rem; letter-spacing: -.01em; }
 .textboxsideimage {
@@ -580,7 +580,7 @@ body.compact-page .stats-row { margin-top: 1.75rem; }
    typography, corner radius, shadow depth and form field styling
    (fonts/colors/spacing pulled from its computed styles) ======== */
 .ipn-contact { font-family: 'Work Sans', var(--font-body); }
-.ipn-contact .intro-card,
+.ipn-contact .textboxsideimage,
 .ipn-contact .contact-form-wrap,
 .ipn-contact .acknowledgement {
     border-radius: 4px;
@@ -589,8 +589,8 @@ body.compact-page .stats-row { margin-top: 1.75rem; }
     max-width: none;
     background: #fff;
 }
-.ipn-contact .contact-photo-frame { border-radius: 4px; box-shadow: 0 1px 1px rgba(0, 31, 65, .1); }
-.ipn-contact .intro-card h1,
+.ipn-contact .textboxsideimage-imagecol img { border-radius: 4px; border: none; }
+.ipn-contact .textboxsideimage h1,
 .ipn-contact .contact-form-wrap h2,
 .ipn-contact .acknowledgement h2 {
     font-family: 'Work Sans', var(--font-body);
@@ -598,9 +598,11 @@ body.compact-page .stats-row { margin-top: 1.75rem; }
     color: var(--primary);
     letter-spacing: -.02em;
 }
-.ipn-contact .intro-card p,
+.ipn-contact .textboxsideimage p,
 .ipn-contact .contact-form-wrap p,
 .ipn-contact .acknowledgement p { color: #474747; }
+.ipn-contact .tick-list li { align-items: flex-start; font-weight: 400; }
+.ipn-contact .tick-list .icon { margin-top: .2rem; }
 .ipn-contact .tick-list a,
 .ipn-contact a.text-link {
     color: var(--primary); font-weight: 500; text-decoration: none;
