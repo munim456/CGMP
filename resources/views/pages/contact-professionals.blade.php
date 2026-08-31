@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
 @section('content')
-<section class="section">
+<section class="section section--tint">
     <div class="container">
 
         <div class="inner-layout">
