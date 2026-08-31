@@ -568,6 +568,7 @@ body.compact-page .stats-row { margin-top: 1.75rem; }
     background: var(--bg-alt); border-radius: 8px;
     padding: clamp(1.5rem, 4vw, 2.25rem); margin-top: 2.25rem;
 }
+.acknowledgement h2 { text-align: center; font-size: 1.05rem; color: var(--primary-darker); margin-bottom: 1.25rem; }
 .acknowledgement__flags { display: flex; justify-content: center; gap: 1.25rem; margin-bottom: 1.25rem; }
 .acknowledgement__flags img { height: 54px; width: auto; }
 .acknowledgement p {
