@@ -579,7 +579,7 @@ body.compact-page .stats-row { margin-top: 1.75rem; }
 /* ======== Contact page: matched to the IPN reference page's own
    typography, corner radius, shadow depth and form field styling
    (fonts/colors/spacing pulled from its computed styles) ======== */
-.ipn-contact { font-family: 'Work Sans', var(--font-body); }
+.ipn-contact { font-family: 'Work Sans', var(--font-body); font-weight: 300; }
 .ipn-contact .textboxsideimage,
 .ipn-contact .contact-form-wrap,
 .ipn-contact .acknowledgement {
@@ -589,9 +589,14 @@ body.compact-page .stats-row { margin-top: 1.75rem; }
     max-width: none;
     background: #fff;
 }
+/* Reference keeps its three boxes close together (~16px) so they read
+   as one connected block rather than separate floating cards. */
+.ipn-contact .textboxsideimage { margin-bottom: 1rem; }
+.ipn-contact .contact-emergency { margin: 1rem 0; }
+.ipn-contact .contact-form-wrap { margin-bottom: 1rem; }
+.ipn-contact .acknowledgement { margin-top: 0; }
 .ipn-contact .textboxsideimage-imagecol img { border-radius: 4px; border: none; }
 .ipn-contact .textboxsideimage h1,
-.ipn-contact .contact-form-wrap h2,
 .ipn-contact .acknowledgement h2 {
     font-family: 'Work Sans', var(--font-body);
     font-weight: 700;
@@ -600,19 +605,19 @@ body.compact-page .stats-row { margin-top: 1.75rem; }
 }
 .ipn-contact .textboxsideimage p,
 .ipn-contact .contact-form-wrap p,
-.ipn-contact .acknowledgement p { color: #474747; }
-.ipn-contact .tick-list li { align-items: flex-start; font-weight: 400; }
+.ipn-contact .acknowledgement p { color: #474747; font-weight: 300; }
+.ipn-contact .tick-list li { align-items: flex-start; font-weight: 300; }
 .ipn-contact .tick-list .icon { margin-top: .2rem; }
 .ipn-contact .tick-list a,
 .ipn-contact a.text-link {
-    color: var(--primary); font-weight: 500; text-decoration: none;
+    color: var(--primary); font-weight: 400; text-decoration: none;
 }
 .ipn-contact .tick-list a:hover,
 .ipn-contact a.text-link:hover { text-decoration: underline; }
-.ipn-contact .field label { font-family: 'Work Sans', var(--font-body); font-weight: 500; color: #474747; }
+.ipn-contact .field label { font-family: 'Work Sans', var(--font-body); font-weight: 300; color: #474747; }
 .ipn-contact .field input,
 .ipn-contact .field textarea {
-    font-family: 'Work Sans', var(--font-body);
+    font-family: 'Work Sans', var(--font-body); font-weight: 300;
     border: 1px solid #d8dce9; border-radius: 4px;
     padding: .5rem 1rem; min-height: 2.75rem; background: #fff;
 }

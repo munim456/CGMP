@@ -40,8 +40,6 @@
                 </div>
 
                 <div class="contact-form-wrap" id="feedback-form" data-reveal>
-                <h2>Feedback form</h2>
-
                 @if(session('status'))
                     <div class="alert alert--success" role="status">
                         <x-icon name="check-circle" class="w-5 h-5"/> {{ session('status') }}
