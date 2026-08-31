@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             SectionSeeder::class,
             PageSeeder::class,
             ServiceSeeder::class,
+            ServiceDirectoryItemSeeder::class,
             DoctorSeeder::class,
             PostSeeder::class,
             AnnouncementSeeder::class,

@@ -17,17 +17,26 @@ class ContactController extends Controller
         return view('pages.contact');
     }
 
+    public function professionals(): View
+    {
+        return view('pages.contact-professionals');
+    }
+
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:120'],
+            'first_name' => ['required', 'string', 'max:60'],
+            'surname' => ['required', 'string', 'max:60'],
             'email' => ['required', 'email', 'max:180'],
-            'phone' => ['nullable', 'string', 'max:30'],
+            'phone' => ['required', 'string', 'max:30'],
             'message' => ['required', 'string', 'max:3000'],
             'website' => ['prohibited'],
         ], [
             'website.prohibited' => 'The message could not be sent. If you are human, please try again.',
         ]);
+
+        $validated['name'] = trim($validated['first_name'].' '.$validated['surname']);
+        unset($validated['first_name'], $validated['surname']);
 
         ContactMessage::create($validated);
 

@@ -37,6 +37,8 @@
                 <x-icon name="file-text"/> Categories & tags</a>
             <a href="{{ route('admin.services.index') }}" class="{{ request()->routeIs('services.*') ? 'is-active' : '' }}">
                 <x-icon name="stethoscope"/> Services</a>
+            <a href="{{ route('admin.service-directory.index') }}" class="{{ request()->routeIs('service-directory.*') ? 'is-active' : '' }}">
+                <x-icon name="file-text"/> Services directory</a>
             <a href="{{ route('admin.doctors.index') }}" class="{{ request()->routeIs('doctors.*') ? 'is-active' : '' }}">
                 <x-icon name="user-round"/> Doctors</a>
             <p class="admin-nav__group">Website sections</p>
@@ -85,7 +87,6 @@
             </button>
             <h1 class="admin-topbar__title">@yield('page-title', 'Dashboard')</h1>
             <div class="admin-topbar__right">
-                <a href="{{ route('admin.posts.create') }}" class="btn btn--primary btn--sm"><x-icon name="plus" class="w-4 h-4"/> New post</a>
                 <span class="admin-user">{{ auth()->user()?->name }}</span>
             </div>
         </header>
