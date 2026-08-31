@@ -22,19 +22,32 @@
                         <x-icon name="search" class="w-4 h-4"/>
                         <input type="search" placeholder="Search by doctor name or specialty…" aria-label="Search doctors by name or specialty" data-doctor-search>
                     </div>
-                    <div class="doctor-sort-bar" role="group" aria-label="Sort doctors">
-                        <span class="doctor-sort-bar__label">Sort by</span>
-                        <button type="button" class="chip chip--filter chip--active" data-sort-key="name">Name</button>
-                        <button type="button" class="chip chip--filter" data-sort-key="interests">Specialty</button>
-                    </div>
+                </div>
+
+                @php
+                    $doctorLastNames = $doctors->map(fn ($doctor) => mb_strtoupper(mb_substr(collect(explode(' ', preg_replace('/^Dr\.?\s+/i', '', $doctor->name)))->last(), 0, 1)));
+                @endphp
+                <p class="doctor-directory__az-label" id="doctor-az-label">Filter results by last name</p>
+                <div class="az-filter" role="group" aria-labelledby="doctor-az-label" data-az-filter>
+                    <button type="button" class="az-filter__btn is-active" data-az-letter="all">All</button>
+                    @foreach(range('A', 'Z') as $letter)
+                        <button type="button"
+                            class="az-filter__btn{{ $doctorLastNames->contains($letter) ? '' : ' is-disabled' }}"
+                            data-az-letter="{{ strtolower($letter) }}"
+                            @if(!$doctorLastNames->contains($letter)) disabled @endif>{{ $letter }}</button>
+                    @endforeach
                 </div>
 
                 <div class="doctor-table-wrap">
                     <table class="doctor-table" data-doctor-table>
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Special interests</th>
+                                <th class="is-sortable is-sorted-asc">
+                                    <button type="button" class="sort-btn" data-sort-key="name">Name <x-icon name="chevron-down" class="w-3 h-3 sort-icon"/></button>
+                                </th>
+                                <th class="is-sortable">
+                                    <button type="button" class="sort-btn" data-sort-key="interests">Special interests <x-icon name="chevron-down" class="w-3 h-3 sort-icon"/></button>
+                                </th>
                                 <th>Bookings</th>
                             </tr>
                         </thead>
@@ -53,7 +66,7 @@
                                                 @if($doctor->photo)
                                                     <img src="{{ image_url($doctor->photo) }}" alt="Photo of {{ $doctor->name }}" loading="lazy">
                                                 @else
-                                                    <span class="avatar-initials">{{ collect(explode(' ', $doctor->name))->map(fn ($w) => mb_substr($w, 0, 1))->implode('') }}</span>
+                                                    <span class="doctor-table__photo-placeholder"><x-icon name="stethoscope" class="w-6 h-6"/></span>
                                                 @endif
                                             </div>
                                             <div>

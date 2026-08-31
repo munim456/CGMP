@@ -144,24 +144,28 @@ if (backToTop) {
     });
 }
 
-/* ---------- Doctor directory: search + sort ---------- */
+/* ---------- Doctor directory: search + A-Z filter + sort ---------- */
 const doctorDirectory = document.querySelector('[data-doctor-directory]');
 if (doctorDirectory) {
     const searchInput = doctorDirectory.querySelector('[data-doctor-search]');
     const list = doctorDirectory.querySelector('[data-doctor-list]');
     const cards = [...doctorDirectory.querySelectorAll('[data-doctor-row]')];
     const emptyState = doctorDirectory.querySelector('[data-doctor-empty]');
-    const sortButtons = [...doctorDirectory.querySelectorAll('[data-sort-key]')];
+    const azButtons = [...doctorDirectory.querySelectorAll('[data-az-letter]')];
+    const sortButtons = [...doctorDirectory.querySelectorAll('[data-doctor-table] .sort-btn')];
 
     let sortKey = 'name';
     let sortDir = 1;
+    let activeLetter = 'all';
 
     function applyFilters() {
         const query = (searchInput?.value || '').trim().toLowerCase();
         let visibleCount = 0;
 
         cards.forEach((card) => {
-            const visible = !query || card.dataset.name.includes(query) || card.dataset.interests.includes(query);
+            const matchesQuery = !query || card.dataset.name.includes(query) || card.dataset.interests.includes(query);
+            const matchesLetter = activeLetter === 'all' || card.dataset.lastName.startsWith(activeLetter);
+            const visible = matchesQuery && matchesLetter;
             card.hidden = !visible;
             if (visible) visibleCount += 1;
         });
@@ -179,12 +183,29 @@ if (doctorDirectory) {
 
     searchInput?.addEventListener('input', applyFilters);
 
+    azButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            if (btn.disabled) return;
+            activeLetter = btn.dataset.azLetter;
+            azButtons.forEach((b) => b.classList.toggle('is-active', b === btn));
+            applyFilters();
+        });
+    });
+
     sortButtons.forEach((btn) => {
         btn.addEventListener('click', () => {
             const key = btn.dataset.sortKey;
             sortDir = sortKey === key ? -sortDir : 1;
             sortKey = key;
-            sortButtons.forEach((b) => b.classList.toggle('chip--active', b === btn));
+            sortButtons.forEach((b) => {
+                const th = b.closest('th');
+                if (b === btn) {
+                    th.classList.toggle('is-sorted-asc', sortDir === 1);
+                    th.classList.toggle('is-sorted-desc', sortDir === -1);
+                } else {
+                    th.classList.remove('is-sorted-asc', 'is-sorted-desc');
+                }
+            });
             applySort();
         });
     });
